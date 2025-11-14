@@ -1,0 +1,7 @@
+boomi ALL=NOPASSWD: /bin/systemctl start boomi
+boomi ALL=NOPASSWD: /bin/systemctl stop boomi
+boomi ALL=NOPASSWD: /bin/systemctl restart boomi
+boomi ALL=NOPASSWD: /bin/systemctl status boomi
+boomi ALL=NOPASSWD: /bin/systemctl show -p ActiveState boomi
+boomi ALL=NOPASSWD: /bin/systemctl show -p SubState boomi
+boomi ALL=NOPASSWD: /bin/systemctl show -p ExecMainPID boomi
