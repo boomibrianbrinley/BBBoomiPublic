@@ -16,9 +16,9 @@ IgnoreSIGPIPE=no
 KillMode=process
 GuessMainPID=yes
 RemainAfterExit=yes
-ExecStart=/boomi/localbin/atom start
+ExecStart=/boomi/local/bin/atom start
 ExecStop=/boomi/local/bin/atom stop
-ExecReload=/boomi/local/atom restart
+ExecReload=/boomi/local/bin/atom restart
 User=boomi
 Group=boomi
 
