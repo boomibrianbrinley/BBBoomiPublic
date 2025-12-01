@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # ENV variables
 # LOCALHOST_ID - set if script is invoked by a cluster node.
 # service_name - set based on systemd service definition file. e.g. "atom" for "atom.service"
