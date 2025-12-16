@@ -1,6 +1,6 @@
 [Unit]
 Documentation=man:systemd-sysv-generator(8)
-Description=LSB: Boomi Basic Runtime
+Description=LSB: Boomi Clustered Runtime
 After=local-fs.target network.target remote-fs.target nss-lookup.target ntpd.service
 # For AWS based clusters using EFS mounts use this instead:
 # After=efs.mount local-fs.target network.target remote-fs.target nss-lookup.target ntpd.service
@@ -16,9 +16,9 @@ IgnoreSIGPIPE=no
 KillMode=process
 GuessMainPID=yes
 RemainAfterExit=yes
-ExecStart=/boomi/local/bin/atom start
-ExecStop=/boomi/local/bin/atom stop
-ExecReload=/boomi/local/bin/atom restart
+ExecStart=/boomi/share/bin/atom start
+ExecStop=/boomi/share/bin/atom stop
+ExecReload=/boomi/share/bin/atom restart
 User=boomi
 Group=boomi
 
