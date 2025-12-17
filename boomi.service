@@ -9,7 +9,8 @@ Conflicts=shutdown.target
 [Service]
 LimitNOFILE=65536
 LimitNPROC=65536
-Type=forking
+# Type=forking
+Type=simple
 Restart=always
 TimeoutSec=5min
 IgnoreSIGPIPE=no
