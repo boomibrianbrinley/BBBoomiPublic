@@ -1,0 +1,93 @@
+trigger: none
+pr: none
+
+parameters:
+- name: target
+  displayName: "Target environment"
+  type: string
+  default: dev
+  values:
+  - dev
+  - qa_staging
+  - qa_set2
+  - prod
+  - all
+- name: releaseFile
+  displayName: "Path to release.json (relative to boomi-cicd-release repo root)"
+  type: string
+  default: "boomi_release/release.json"
+
+resources:
+  repositories:
+  - repository: boomiCli
+    type: git
+    name: boomi-cicd-cli-py
+    ref: refs/heads/main
+
+variables:
+- group: Boomi-Variable-Group
+- name: BOOMI_RELEASE_FILE
+  value: boomi_release/release.json
+
+stages:
+# 1) Azure 1 - DEV - Set 1 (Integration)
+- stage: Azure1_DEV_Set1
+  displayName: "Azure 1 - DEV - Set 1 (Integration)"
+  condition: or(eq('${{ parameters.target }}','all'), eq('${{ parameters.target }}','dev'))
+  jobs:
+  - template: templates/boomi-deploy-stage.yml
+    parameters:
+      # Use your ADO Environment "slug" here (must exist in Pipelines > Environments)
+      adoEnvironmentName: "azure1-dev-set1-integration"
+      boomiAtomName: "Azure 1 - DEV - Set 1 (Integration)"
+      boomiEnvironmentName: "Azure 1 - DEV - Set 1 (Integration)"
+
+# 2) Azure 2.1 - QA/Staging - Set 1 (Integration)
+- stage: Azure2_1_QAStaging_Set1
+  displayName: "Azure 2.1 - QA/Staging - Set 1 (Integration)"
+  dependsOn: Azure1_DEV_Set1
+  # Run if: target is all OR target is qa_staging
+  # If target is qa_staging, don't require DEV to have run (since DEV stage will be skipped)
+  condition: |
+    and(
+      succeededOrFailed(),
+      or(eq('${{ parameters.target }}','all'), eq('${{ parameters.target }}','qa_staging'))
+    )
+  jobs:
+  - template: templates/boomi-deploy-stage.yml
+    parameters:
+      adoEnvironmentName: "azure21-qa-staging-set1-integration"
+      boomiAtomName: "Azure 2.1 - QA/Staging - Set 1 (Integration)"
+      boomiEnvironmentName: "Azure 2.1 - QA/Staging - Set 1 (Integration)"
+
+# 3) Azure 2.2 - QA - Set 2 (Integration)
+- stage: Azure2_2_QA_Set2
+  displayName: "Azure 2.2 - QA - Set 2 (Integration)"
+  dependsOn: Azure2_1_QAStaging_Set1
+  condition: |
+    and(
+      succeededOrFailed(),
+      or(eq('${{ parameters.target }}','all'), eq('${{ parameters.target }}','qa_set2'))
+    )
+  jobs:
+  - template: templates/boomi-deploy-stage.yml
+    parameters:
+      adoEnvironmentName: "azure22-qa-set2-integration"
+      boomiAtomName: "Azure 2.2 - QA - Set 2 (Integration)"
+      boomiEnvironmentName: "Azure 2.2 - QA - Set 2 (Integration)"
+
+# 4) Azure 3 - Production (Integration)
+- stage: Azure3_Production
+  displayName: "Azure 3 - Production (Integration)"
+  dependsOn: Azure2_2_QA_Set2
+  condition: |
+    and(
+      succeededOrFailed(),
+      or(eq('${{ parameters.target }}','all'), eq('${{ parameters.target }}','prod'))
+    )
+  jobs:
+  - template: templates/boomi-deploy-stage.yml
+    parameters:
+      adoEnvironmentName: "azure3-production-integration"
+      boomiAtomName: "Azure 3 - Production (Integration)"
+      boomiEnvironmentName: "Azure 3 - Production (Integration)"
