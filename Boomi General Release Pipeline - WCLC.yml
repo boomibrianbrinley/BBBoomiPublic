@@ -1,0 +1,305 @@
+trigger:
+  enabled: false
+pr:
+  enabled: false
+parameters:
+- name: target
+  displayName: "Target environment"
+  type: string
+  default: dev
+  values:
+  - dev
+  - qa_staging
+  - qa_set2
+  - prod
+  - all
+- name: releaseFile
+  displayName: "Path to release.json (relative to boomi-cicd-release repo root)"
+  type: string
+  default: "boomi_release/release.json"
+resources:
+  repositories:
+  - repository: boomiCli
+    type: git
+    name: boomi-cicd-cli-py
+    ref: refs/heads/main
+variables:
+- group: Boomi-Variable-Group
+- name: BOOMI_RELEASE_FILE
+  value: boomi_release/release.json
+stages:
+- stage: Azure1_DEV_Set1
+  displayName: "Azure 1 - DEV - Set 1 (Integration)"
+  condition: or(eq('dev','all'), eq('dev','dev'))
+  jobs:
+  - deployment: Deploy
+    displayName: "Deploy"
+    environment:
+      name: azure1-dev-set1-integration
+    pool:
+      name: Default
+    variables:
+    - name: BOOMI_ATOM_NAME
+      value: Azure 1 - DEV - Set 1 (Integration)
+    - name: BOOMI_ENVIRONMENT_NAME
+      value: Azure 1 - DEV - Set 1 (Integration)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: self
+              path: s/self
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: boomiCli
+              path: s/boomi-cicd-cli-py
+          - task: CmdLine@2
+            displayName: Install requirements
+            inputs:
+              script: >
+                set -e
+
+                python3.11 --version
+
+                python3.11 -m pip install --upgrade pip
+
+
+                if [ -f "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt" ]; then
+                  python3.11 -m pip install -r "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt"
+                fi
+          - task: CmdLine@2
+            inputs:
+              script: >
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/codequaility.py
+
+                displayName: Validate Code Quality Rules
+          - task: CmdLine@2
+            displayName: Boomi Release Pipeline
+            env:
+              BOOMI_PASSWORD: $(BOOMI_PASSWORD)
+            inputs:
+              script: >
+                set -e
+
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/release_pipeline.py
+- stage: Azure2_1_QAStaging_Set1
+  displayName: "Azure 2.1 - QA/Staging - Set 1 (Integration)"
+  dependsOn:
+  - Azure1_DEV_Set1
+  condition: >
+    and(
+      succeededOrFailed(),
+      or(eq('dev','all'), eq('dev','qa_staging'))
+    )
+  jobs:
+  - deployment: Deploy
+    displayName: "Deploy"
+    environment:
+      name: azure21-qa-staging-set1-integration
+    pool:
+      name: Default
+    variables:
+    - name: BOOMI_ATOM_NAME
+      value: Azure 2.1 - QA/Staging - Set 1 (Integration)
+    - name: BOOMI_ENVIRONMENT_NAME
+      value: Azure 2.1 - QA/Staging - Set 1 (Integration)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: self
+              path: s/self
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: boomiCli
+              path: s/boomi-cicd-cli-py
+          - task: CmdLine@2
+            displayName: Install requirements
+            inputs:
+              script: >
+                set -e
+
+                python3.11 --version
+
+                python3.11 -m pip install --upgrade pip
+
+
+                if [ -f "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt" ]; then
+                  python3.11 -m pip install -r "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt"
+                fi
+          - task: CmdLine@2
+            inputs:
+              script: >
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/codequaility.py
+
+                displayName: Validate Code Quality Rules
+          - task: CmdLine@2
+            displayName: Boomi Release Pipeline
+            env:
+              BOOMI_PASSWORD: $(BOOMI_PASSWORD)
+            inputs:
+              script: >
+                set -e
+
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/release_pipeline.py
+- stage: Azure2_2_QA_Set2
+  displayName: "Azure 2.2 - QA - Set 2 (Integration)"
+  dependsOn:
+  - Azure2_1_QAStaging_Set1
+  condition: >
+    and(
+      succeededOrFailed(),
+      or(eq('dev','all'), eq('dev','qa_set2'))
+    )
+  jobs:
+  - deployment: Deploy
+    displayName: "Deploy"
+    environment:
+      name: azure22-qa-set2-integration
+    pool:
+      name: Default
+    variables:
+    - name: BOOMI_ATOM_NAME
+      value: Azure 2.2 - QA - Set 2 (Integration)
+    - name: BOOMI_ENVIRONMENT_NAME
+      value: Azure 2.2 - QA - Set 2 (Integration)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: self
+              path: s/self
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: boomiCli
+              path: s/boomi-cicd-cli-py
+          - task: CmdLine@2
+            displayName: Install requirements
+            inputs:
+              script: >
+                set -e
+
+                python3.11 --version
+
+                python3.11 -m pip install --upgrade pip
+
+
+                if [ -f "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt" ]; then
+                  python3.11 -m pip install -r "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt"
+                fi
+          - task: CmdLine@2
+            inputs:
+              script: >
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/codequaility.py
+
+                displayName: Validate Code Quality Rules
+          - task: CmdLine@2
+            displayName: Boomi Release Pipeline
+            env:
+              BOOMI_PASSWORD: $(BOOMI_PASSWORD)
+            inputs:
+              script: >
+                set -e
+
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/release_pipeline.py
+- stage: Azure3_Production
+  displayName: "Azure 3 - Production (Integration)"
+  dependsOn:
+  - Azure2_2_QA_Set2
+  condition: >
+    and(
+      succeededOrFailed(),
+      or(eq('dev','all'), eq('dev','prod'))
+    )
+  jobs:
+  - deployment: Deploy
+    displayName: "Deploy"
+    environment:
+      name: azure3-production-integration
+    pool:
+      name: Default
+    variables:
+    - name: BOOMI_ATOM_NAME
+      value: Azure 3 - Production (Integration)
+    - name: BOOMI_ENVIRONMENT_NAME
+      value: Azure 3 - Production (Integration)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: self
+              path: s/self
+          - task: 6d15af64-176c-496d-b583-fd2ae21d4df4@1
+            inputs:
+              repository: boomiCli
+              path: s/boomi-cicd-cli-py
+          - task: CmdLine@2
+            displayName: Install requirements
+            inputs:
+              script: >
+                set -e
+
+                python3.11 --version
+
+                python3.11 -m pip install --upgrade pip
+
+
+                if [ -f "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt" ]; then
+                  python3.11 -m pip install -r "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py/requirements.txt"
+                fi
+          - task: CmdLine@2
+            inputs:
+              script: >
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/codequaility.py
+
+                displayName: Validate Code Quality Rules
+          - task: CmdLine@2
+            displayName: Boomi Release Pipeline
+            env:
+              BOOMI_PASSWORD: $(BOOMI_PASSWORD)
+            inputs:
+              script: >
+                set -e
+
+                export PYTHONPATH="$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                cd "$(System.DefaultWorkingDirectory)/boomi-cicd-cli-py"
+
+                python3.11 boomi_cicd/scripts/release_pipeline.py
+
