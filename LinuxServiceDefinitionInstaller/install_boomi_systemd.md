@@ -1,6 +1,6 @@
 # Boomi systemd Service Installation
 
-This document describes how to install and enable the **Boomi Clustered Runtime**
+This document describes how to install and enable a **Boomi Runtime**
 as a `systemd` service on a Linux server using an offline installation script.
 
 The installer generates a `systemd` unit file that matches the official Boomi
@@ -30,7 +30,7 @@ No internet access is required.
 
 This procedure works on **any Linux distribution that uses `systemd`**, including:
 
-- RHEL / CentOS / Rocky / Alma
+- RHEL
 - Debian
 - Ubuntu
 - Amazon Linux
