@@ -1,0 +1,40 @@
+I’m on macOS and this VS Code workspace includes my Boomi local Atom runtime directories:
+
+- Execution directory: /opt/Boomi/atom/jmxDemo/execution
+- Component directory: /opt/Boomi/atom/jmxDemo/component
+
+Goal:
+Find which Boomi *parent processes* (process components) are consuming the most disk space in execution logs, so I can tune logging and/or process design.
+
+What to do:
+1) Scan the execution directory and compute disk usage by execution:
+   - Treat each execution as a folder (or identifiable execution unit).
+   - Sum the sizes of all files under that execution recursively.
+   - Do NOT read log file contents; use filesystem metadata only (fast, memory-safe).
+
+2) Correlate each execution to its parent process/component:
+   - Parse execution metadata files within each execution folder (JSON/XML/properties) to extract a process/component identifier (processId/componentId/name).
+   - If only an ID is available, resolve it by parsing the Boomi component XML files under /opt/Boomi/atom/jmxDemo/component.
+   - Prefer XML parsing over brittle string matching.
+
+3) Aggregate and summarize:
+   - Group by parent process (process name + id if available).
+   - Compute: execution count, total log size, average size, max size.
+   - Output “Top N” (default 20) sorted by total log size descending.
+
+Output requirements:
+- Print a concise summary table to the terminal:
+  Parent Process | Process ID (if found) | Exec Count | Total Size (MB) | Avg Size (MB) | Max Size (MB)
+- Also write a CSV report file (e.g., boomi_log_space_report.csv) in the workspace root.
+
+Implementation requirements:
+- Generate a working script in Python 3 (best cross-platform option on macOS).
+- Provide clear configuration variables at the top for the two paths and “Top N”.
+- Handle missing/unknown correlations gracefully (bucket as “UNKNOWN_PROCESS”).
+- Be read-only (non-destructive).
+- Add brief comments so I can extend it later.
+
+Deliverables:
+- The complete Python script ready to run.
+- A short note showing the exact command to run it from the VS Code terminal.
+- print two rankings: (1) Top by total size, (2) Top by average execution size.
