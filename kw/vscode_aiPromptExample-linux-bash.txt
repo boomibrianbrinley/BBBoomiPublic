@@ -1,1 +1,39 @@
+I’m on Linux and this VS Code workspace includes my Boomi local Atom runtime directories:
 
+- Execution directory: /opt/Boomi/atom/<ATOM_NAME>/execution
+- Component directory: /opt/Boomi/atom/<ATOM_NAME>/component
+
+Goal:
+Find which Boomi parent processes consume the most disk space in execution logs so I can tune logging/process design.
+
+What to do:
+1) Compute disk usage by execution folder:
+   - Treat each top-level folder under the execution directory as an execution.
+   - Compute recursive size of each execution folder using filesystem tools (du/stat).
+   - Do NOT read log file contents; rely on filesystem metadata.
+
+2) Correlate execution -> parent process/component:
+   - Within each execution folder, locate likely metadata files (e.g., *.properties, *.xml, *.json).
+   - Extract candidate process/component identifiers using grep/sed/awk with conservative patterns.
+   - Attempt to resolve IDs to process names by scanning component XML files in the component directory.
+   - If correlation can’t be determined, bucket as UNKNOWN_PROCESS.
+
+3) Aggregate and summarize:
+   - Group by parent process identifier/name.
+   - Compute: execution count, total size MB, average size MB, max size MB.
+   - Output Top N (default 20) sorted by total size desc.
+
+Output requirements:
+- Print a concise summary table to terminal:
+  Parent Process | Process ID (if found) | Exec Count | Total Size (MB) | Avg Size (MB) | Max Size (MB)
+- Write a CSV report: boomi_log_space_report.csv in the current working directory.
+
+Implementation requirements:
+- Bash only (POSIX-ish). Allowed tools: bash, find, du, awk, sed, grep, sort, join, xargs, stat (no Python/Perl).
+- Provide configuration vars at the top: EXEC_DIR, COMP_DIR, TOPN, OUT_CSV
+- Be read-only (non-destructive).
+- Make it reasonably performant for many executions (use du once per execution folder, avoid repeated full scans when possible).
+
+Deliverables:
+- A single bash script (e.g., boomi_log_space_report.sh) ready to run.
+- A short note showing the exact command to run it.
