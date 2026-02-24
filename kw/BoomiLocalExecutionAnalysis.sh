@@ -3,6 +3,11 @@ set -euo pipefail
 
 ########################################
 # Usage
+#./boomi_log_space_report.sh \
+#  --exec /opt/Boomi/atom/jmxDemo/execution \
+#  --comp /opt/Boomi/atom/jmxDemo/component \
+#  --top 25 \
+#  --out boomi_report.csv
 ########################################
 usage() {
   cat <<EOF
