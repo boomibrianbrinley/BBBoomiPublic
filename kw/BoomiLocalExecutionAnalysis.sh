@@ -3,7 +3,7 @@ set -euo pipefail
 
 ########################################
 # Usage
-#./boomi_log_space_report.sh \
+#./BoomiLocalExecutionAnalysis.sh \
 #  --exec /opt/Boomi/atom/jmxDemo/execution \
 #  --comp /opt/Boomi/atom/jmxDemo/component \
 #  --top 25 \
