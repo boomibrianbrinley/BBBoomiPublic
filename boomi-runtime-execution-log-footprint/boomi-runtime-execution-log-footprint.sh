@@ -53,14 +53,147 @@ done
 
 kib_to_mb() { awk -v kib="$1" 'BEGIN { printf "%.2f", kib/1024.0 }'; }
 
-# Extract first occurrence of <Tag>value</Tag>
+normalize_name() {
+  # Collapse all whitespace (tabs/newlines/multiple spaces) to a single space and trim.
+  echo "$1" \
+    | tr -d '\r' \
+    | tr '\t' ' ' \
+    | tr '\n' ' ' \
+    | sed -E 's/[[:space:]]+/ /g; s/^[[:space:]]+//; s/[[:space:]]+$//' \
+    || true
+}
+
 xml_tag_value() {
   local file="$1"
   local tag="$2"
-  # Works for simple one-line tags; Boomi XML usually fits.
-  grep -m 1 -E "<$tag>[^<]*</$tag>" "$file" 2>/dev/null \
-    | sed -E "s/.*<$tag>([^<]*)<\/$tag>.*/\1/" \
-    | tr -d '\r' | tr -d '\t' || true
+
+  # Portable extraction of the first <tag>...</tag> value, even if it spans multiple lines.
+  # Uses awk (BSD/GNU compatible) instead of GNU-sed-only address ranges.
+  local block
+  block="$(awk -v T="$tag" '
+    BEGIN { inblock=0; buf="" }
+    {
+      if (!inblock) {
+        if (index($0, "<" T ">") > 0) { inblock=1 }
+      }
+      if (inblock) {
+        buf = buf $0 "\n"
+        if (index($0, "</" T ">") > 0) { print buf; exit }
+      }
+    }
+  ' "$file" 2>/dev/null \
+    | tr -d '\r' \
+    | tr -d '\t' \
+    | tr '\n' ' ' \
+    | head -c 200000 || true)"
+
+  if [[ -z "${block:-}" ]]; then
+    echo ""
+    return 0
+  fi
+
+  echo "$block" \
+    | sed -E "s/.*<${tag}>([^<]*)<\/${tag}>.*/\1/" \
+    | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//' \
+    || true
+}
+
+
+# Extract value of a tag within the first <Component>...</Component> block.
+xml_component_tag_value() {
+  local file="$1"
+  local tag="$2"
+
+  # Extract the first <Component>...</Component> block, then extract <tag>...</tag> from within it.
+  local block
+  block="$(awk '
+    BEGIN { inblock=0; buf="" }
+    {
+      if (!inblock) {
+        if ($0 ~ /<Component[ >]/) { inblock=1 }
+      }
+      if (inblock) {
+        buf = buf $0 "\n"
+        if ($0 ~ /<\/Component>/) { print buf; exit }
+      }
+    }
+  ' "$file" 2>/dev/null \
+    | tr -d '\r' \
+    | tr -d '\t' \
+    | tr '\n' ' ' \
+    | head -c 500000 || true)"
+
+  if [[ -z "${block:-}" ]]; then
+    echo ""
+    return 0
+  fi
+
+  echo "$block" \
+    | sed -E "s/.*<${tag}>([^<]*)<\/${tag}>.*/\1/" \
+    | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//' \
+    || true
+}
+# Extract the <Id> and the first <Name> that appears AFTER that </Id> within the first <Component>...</Component> block.
+# Outputs: "<id>\t<name>" (either may be blank).
+xml_component_id_and_name() {
+  local file="$1"
+
+  local block
+  block="$(awk '
+    BEGIN { inblock=0; buf="" }
+    {
+      if (!inblock) {
+        if ($0 ~ /<Component[ >]/) { inblock=1 }
+      }
+      if (inblock) {
+        buf = buf $0 "\n"
+        if ($0 ~ /<\/Component>/) { print buf; exit }
+      }
+    }
+  ' "$file" 2>/dev/null \
+    | tr -d '\r' \
+    | tr -d '\t' \
+    | tr '\n' ' ' \
+    | head -c 800000 || true)"
+
+  if [[ -z "${block:-}" ]]; then
+    printf "\t\n"
+    return 0
+  fi
+
+  # First <Id>...</Id>
+  local pid
+  pid="$(echo "$block" | awk '
+    {
+      s=$0
+      if (match(s, /<Id>[^<]*<\/Id>/)) {
+        seg=substr(s, RSTART, RLENGTH)
+        gsub(/.*<Id>/, "", seg)
+        gsub(/<\/Id>.*/, "", seg)
+        print seg
+      }
+    }
+  ' | head -n 1 | sed -E "s/^[[:space:]]+//; s/[[:space:]]+$//" || true)"
+
+  # First <Name>...</Name> AFTER first </Id>
+  local pname
+  pname="$(echo "$block" | awk '
+    {
+      s=$0
+      id_end = index(s, "</Id>")
+      if (id_end > 0) {
+        rest = substr(s, id_end + 5)
+        if (match(rest, /<Name>[^<]*<\/Name>/)) {
+          seg=substr(rest, RSTART, RLENGTH)
+          gsub(/.*<Name>/, "", seg)
+          gsub(/<\/Name>.*/, "", seg)
+          print seg
+        }
+      }
+    }
+  ' | head -n 1 | sed -E "s/^[[:space:]]+//; s/[[:space:]]+$//" || true)"
+
+  printf "%s\t%s\n" "$pid" "$pname"
 }
 
 # Extract FolderId name attribute: <FolderId name="Something">...</FolderId>
@@ -69,6 +202,48 @@ xml_folder_name_attr() {
   grep -m 1 -E '<FolderId[^>]*name="[^"]+"' "$file" 2>/dev/null \
     | sed -E 's/.*name="([^"]+)".*/\1/' \
     | tr -d '\r' | tr -d '\t' || true
+}
+
+# Extract a process name from a Boomi process definition XML (best-effort).
+# Different runtimes/exports may store the display name differently.
+extract_process_name_from_definition_xml() {
+  local file="$1"
+  local v=""
+
+  # Prefer the Name inside the <Component> element (this is typically the process display name)
+  v="$(xml_component_id_and_name "$file" | awk -F'\t' '{print $2}')"
+  v="$(normalize_name "$v")"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  # Try common tag variants
+  v="$(xml_tag_value "$file" "Name")"; v="$(normalize_name "$v")"; [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+  v="$(xml_tag_value "$file" "name")"; v="$(normalize_name "$v")"; [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+  v="$(xml_tag_value "$file" "DisplayName")"; v="$(normalize_name "$v")"; [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+  v="$(xml_tag_value "$file" "ProcessName")"; v="$(normalize_name "$v")"; [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  # Try common attribute patterns (e.g., name="...") near a process/component element
+  v="$(grep -E -m 1 '<(Process|process|Component|component)[^>]*[[:space:]]name="[^"]+"' "$file" 2>/dev/null \
+      | sed -E 's/.*[[:space:]]name="([^"]+)".*/\1/' \
+      | tr -d '\r' | tr -d '\t' \
+      || true)"
+  v="$(normalize_name "$v")"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  # Try property-style name keys
+  v="$(grep -E -m 1 '(processName|ProcessName|displayName|DisplayName)[[:space:]]*[:=]' "$file" 2>/dev/null \
+      | sed -E 's/.*(processName|ProcessName|displayName|DisplayName)[[:space:]]*[:=][[:space:]]*"?([^"<]+)"?.*/\2/' \
+      | tr -d '\r' | tr -d '\t' \
+      || true)"
+  v="$(normalize_name "$v")"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  # Last resort: some Boomi files include a FolderId name attribute that is often human-readable
+  v="$(xml_folder_name_attr "$file")"
+  v="$(normalize_name "$v")"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  echo ""
+  return 0
 }
 
 # Extract process name from process_log.xml:
@@ -85,6 +260,37 @@ extract_process_name_from_process_log() {
     | tr -d '\t' \
     | sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//' \
     || true
+}
+
+# Extract process id from process_log.xml (best-effort).
+# Tries common tag/attribute/key patterns.
+extract_process_id_from_process_log() {
+  local file="$1"
+  local v
+
+  # XML tag forms
+  v="$(grep -E -m 1 '<(ProcessId|processId|processID|process_id)>' "$file" 2>/dev/null \
+      | sed -E 's/.*<(ProcessId|processId|processID|process_id)>([^<]+)<\/(ProcessId|processId|processID|process_id)>.*/\2/' \
+      | tr -d '\r' | tr -d '\t' \
+      || true)"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  # Attribute forms: processId="..." or componentId="..."
+  v="$(grep -E -m 1 '(processId|processID|componentId|componentID)="[^"]+"' "$file" 2>/dev/null \
+      | sed -E 's/.*(processId|processID|componentId|componentID)="([^"]+)".*/\2/' \
+      | tr -d '\r' | tr -d '\t' \
+      || true)"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  # Key/value forms in messages
+  v="$(grep -E -m 1 '(processId|processID|componentId|componentID)[[:space:]]*[:=][[:space:]]*' "$file" 2>/dev/null \
+      | sed -E 's/.*(processId|processID|componentId|componentID)[[:space:]]*[:=][[:space:]]*"?([^"[:space:]>]+)"?.*/\2/' \
+      | tr -d '\r' | tr -d '\t' \
+      || true)"
+  [[ -n "${v:-}" ]] && { echo "$v"; return 0; }
+
+  echo ""
+  return 0
 }
 
 # Stable-ish unknown id like python: unknown_process_<hash%10000>
@@ -131,8 +337,18 @@ while IFS= read -r -d '' d; do
       continue
     fi
 
-    pid="$(xml_tag_value "$main_xml" "Id")"
-    pname="$(xml_tag_value "$main_xml" "Name")"
+    comp_pair="$(xml_component_id_and_name "$main_xml")"
+    pid="$(echo "$comp_pair" | awk -F'\t' '{print $1}')"
+    pname_from_comp="$(echo "$comp_pair" | awk -F'\t' '{print $2}')"
+
+    [[ -z "${pid:-}" ]] && pid="$(xml_tag_value "$main_xml" "Id")"
+
+    pname="$(normalize_name "$pname_from_comp")"
+    if [[ -z "${pname:-}" ]]; then
+      pname="$(extract_process_name_from_definition_xml "$main_xml")"
+    fi
+
+
     ptype="$(xml_tag_value "$main_xml" "Type")"
     folder="$(xml_folder_name_attr "$main_xml")"
 
@@ -150,10 +366,15 @@ done < <(find "$PROC_DIR" -mindepth 1 -maxdepth 1 -type d -print0)
 proc_loaded="$(wc -l < "$tmp_proc_map" | tr -d ' ')"
 echo "Loaded $proc_loaded process definitions"
 
+if [[ "$DEBUG" -eq 1 ]]; then
+  echo "DEBUG: First 20 lines of process map TSV (pid, name, type, folder, kib; tabs as [TAB]):" >&2
+  head -n 20 "$tmp_proc_map" | sed -E $'s/\t/[TAB]/g' >&2
+fi
+
 ########################################
 # Step 3: Analyze execution history
 # Python: EXEC_DIR/history/**/execution-* dirs, parse process_log.xml
-# Output TSV: exec_id \t process_name \t exec_kib
+# Output TSV: exec_id \t process_id \t process_name \t exec_kib
 ########################################
 history_path="$EXEC_DIR/history"
 if [[ ! -d "$history_path" ]]; then
@@ -167,19 +388,23 @@ else
     [[ -f "$plog" ]] || { [[ "$DEBUG" -eq 1 ]] && echo "DEBUG: Missing $plog" >&2; continue; }
 
     pname="$(extract_process_name_from_process_log "$plog" || true)"
-    pname="${pname//$'\t'/ }"
+    pname="$(normalize_name "$pname")"
+
+    pid_from_log="$(extract_process_id_from_process_log "$plog")"
+    pid_from_log="$(normalize_name "$pid_from_log")"
+
     [[ -n "${pname:-}" ]] || { [[ "$DEBUG" -eq 1 ]] && echo "DEBUG: Could not extract process name from $plog" >&2; continue; }
 
     exec_id="$(basename "$exec_dir")"   # e.g., execution-123456...
     exec_kib="$(du -sk "$exec_dir" 2>/dev/null | awk '{print $1}' || echo 0)"
-    printf "%s\t%s\t%s\n" "$exec_id" "$pname" "$exec_kib" >> "$tmp_exec_events"
+    printf "%s\t%s\t%s\t%s\n" "$exec_id" "$pid_from_log" "$pname" "$exec_kib" >> "$tmp_exec_events"
   done < <(find "$history_path" -type d -name "execution-*" -print0)
 fi
 
 exec_found="$(wc -l < "$tmp_exec_events" | tr -d ' ')"
 echo "Executions parsed: $exec_found"
 if [[ "$DEBUG" -eq 1 ]]; then
-  echo "DEBUG: First 20 lines of exec events TSV (showing tabs as [TAB]):" >&2
+  echo "DEBUG: First 20 lines of exec events TSV (exec_id, pid, name, kib; tabs as [TAB]):" >&2
   head -n 20 "$tmp_exec_events" | sed -E $'s/\t/[TAB]/g' >&2
 fi
 
@@ -202,33 +427,60 @@ echo "Note: Container logs are not process-specific and are NOT included in per-
 # avg_mb = (total_kib/1024) / exec_count
 ########################################
 awk -F'\t' -v DEBUG="$DEBUG" '
-BEGIN {
-  OFS="|"
+function norm(s) {
+  # 1) Whitespace + case
+  gsub(/[[:space:]]+/," ",s)
+  sub(/^ /,"",s)
+  sub(/ $/,"",s)
+  s = tolower(s)
+
+  # 2) Normalize common Unicode punctuation to ASCII (best-effort)
+  gsub(/’|‘/,"\047",s)
+  gsub(/–|—/,"-",s)
+
+  # 3) Strip common trailing wrappers that sometimes appear in logs
+  #    e.g., Process Name (12345), Process Name [DEV]
+  sub(/[[:space:]]*\\[[^]]*\\][[:space:]]*$/,"",s)
+
+  # 4) Strip common copy suffixes
+  #    e.g., Process Name - Copy
+  sub(/[[:space:]]*-[[:space:]]*copy[[:space:]]*$/,"",s)
+
+  # 5) Final trim
+  gsub(/[[:space:]]+/," ",s)
+  sub(/^ /,"",s)
+  sub(/ $/,"",s)
+
+  return s
 }
+function ord(c) { return index("\001\002\003\004\005\006\007\010\011\012\013\014\015\016\017\020\021\022\023\024\025\026\027\030\031\032\033\034\035\036\037 !\"#$%&\047()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", c) }
+BEGIN { OFS="|" }
 FNR==NR {
   # proc map file: pid, pname, ptype, folder, def_kib
-  pid=$1; pname=$2; ptype=$3; folder=$4; def=$5
-  name_to_id[pname]=pid
-  id_to_name[pid]=pname
-  id_to_type[pid]=ptype
-  id_to_folder[pid]=folder
-  def_kib[pid]=def
+  pid=$1; pname=$2; ptype=$3; folder=$4; def=$5+0
+  nkey = norm(pname)
+  # Keep first seen mapping per normalized name
+  if (!(nkey in name_to_id)) {
+    name_to_id[nkey]=pid
+    id_to_name[pid]=pname
+    id_to_type[pid]=ptype
+    id_to_folder[pid]=folder
+    def_kib[pid]=def
+  }
   next
 }
 {
-  # exec events: exec_id, pname, exec_kib
+  # exec events: exec_id, pid_from_log, pname, exec_kib
   exec_id=$1
-  pname=$2
-  gsub(/\t/," ",pname)
-  ekib=$3+0
+  pname=$3
+  ekib=$4+0
+  nkey = norm(pname)
 
-  pid=name_to_id[pname]
+  pid=name_to_id[nkey]
   if (pid=="") {
-    # unknown_process_<hash%10000>
-    # Use cksum-like behavior: awk doesn’t have cksum, approximate with built-in hash
-    # (stable enough for grouping within a run)
-    h = 0
-    for (i=1; i<=length(pname); i++) h = (h*33 + ord(substr(pname,i,1))) % 1000000007
+    # Stable-ish unknown id (consistent within a run)
+    h=0
+    for (i=1; i<=length(nkey); i++) h = (h*33 + ord(substr(nkey,i,1))) % 1000000007
     pid="unknown_process_" (h % 10000)
     if (!(pid in id_to_name)) {
       id_to_name[pid]=pname
@@ -239,7 +491,7 @@ FNR==NR {
     }
   }
 
-  # De-dupe: only count each execution id once per process id
+  # De-dupe by (process id, execution id)
   key = pid SUBSEP exec_id
   if (seen_exec[key]++) next
 
@@ -248,13 +500,7 @@ FNR==NR {
   if (ekib > max_exec[pid]) max_exec[pid]=ekib
   seen[pid]=1
 }
-function ord(c) { return index("\
-\001\002\003\004\005\006\007\010\011\012\013\014\015\016\017\
-\020\021\022\023\024\025\026\027\030\031\032\033\034\035\036\037\
- !\"#$%&'\''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", c) }
 END {
-  # Emit stats rows:
-  # pid, name, type, folder, count, total_kib, avg_kib, max_kib, def_kib, exec_kib
   for (pid in seen) {
     c = exec_count[pid]+0
     es = exec_sum[pid]+0
@@ -266,13 +512,11 @@ END {
 
     print pid, id_to_name[pid], id_to_type[pid], id_to_folder[pid], c, total, avg, maxv, def, es
   }
-  # Print unknown summary to stderr if debug
+
   if (DEBUG==1) {
     u=0
     for (n in unknown_names) u++
-    if (u>0) {
-      print "DEBUG: Unknown process names (not mapped to IDs): " u > "/dev/stderr"
-    }
+    if (u>0) print "DEBUG: Unknown process names (not mapped to IDs): " u > "/dev/stderr"
   }
 }
 ' "$tmp_proc_map" "$tmp_exec_events" > "$tmp_stats"
