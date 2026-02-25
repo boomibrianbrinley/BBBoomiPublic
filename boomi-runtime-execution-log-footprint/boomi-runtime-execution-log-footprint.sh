@@ -373,7 +373,7 @@ fi
 
 ########################################
 # Step 3: Analyze execution history
-# Python: EXEC_DIR/history/**/execution-* dirs, parse process_log.xml
+# BASH: EXEC_DIR/history/**/execution-* dirs, parse process_log.xml
 # Output TSV: exec_id \t process_id \t process_name \t exec_kib
 ########################################
 history_path="$EXEC_DIR/history"
