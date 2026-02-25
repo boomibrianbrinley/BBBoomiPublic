@@ -1,4 +1,4 @@
-# Boomi Runtime Log Footprint
+# Boomi Runtime Execution Log Footprint
 
 `boomi-runtime-log-footprint.sh` is a lightweight Bash utility that analyzes a Boomi Atom runtime’s filesystem and ranks processes by **execution-history log footprint** (plus **process definition size**).
 
