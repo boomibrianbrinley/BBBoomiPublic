@@ -193,6 +193,6 @@ This script is provided as-is for Boomi environment analysis and optimization pu
 
 ---
 
-**Author**: Community contributed  
+**Author**: Brian Brinley
 **Date**: February 2026  
 **Version**: 1.0 (Bash)
