@@ -181,10 +181,5 @@ Ensure:
 
 ---
 
-## License
 
-Choose what fits your repo (examples):
-- MIT
-- Apache-2.0
-- Internal / proprietary
 
