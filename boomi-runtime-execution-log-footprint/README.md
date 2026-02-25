@@ -1,10 +1,10 @@
 # Boomi Runtime Log Footprint (Bash)
 
-A **Bash** script to analyze disk usage by Boomi parent processes (process components) so you can tune logging and optimize process design in Boomi AtomSphere local runtime environments.
+A **Bash** script to analyze disk usage by Boomi parent processes (process components) so you can tune logging and optimize process design in Boomi local runtime environments.
 
 ## Overview
 
-This tool scans your Boomi local Atom runtime directories to identify which processes are consuming the most disk space through execution logs, helping you make informed decisions about logging levels and process optimization.
+This tool scans your Boomi local runtime directories to identify which processes are consuming the most disk space through execution logs, helping you make informed decisions about logging levels and process optimization.
 
 ## Features
 
