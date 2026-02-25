@@ -118,6 +118,8 @@ Total combined size: 0.26 MB
 Execution history size: 0.06 MB
 ```
 
+![Boomi Runtime Log Footprint Output](boomi-runtime-log-footprint-output.png)
+
 ## How It Works
 
 1. **Process Definition Analysis**: Scans the `/processes` directory for process XML files to build a mapping of process IDs to readable names and metadata
