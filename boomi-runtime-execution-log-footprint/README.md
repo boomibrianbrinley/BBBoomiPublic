@@ -1,6 +1,6 @@
-# Boomi Process Log Space Analyzer
+# Boomi Runtime Log Footprint (Bash)
 
-A Python script to analyze disk usage by Boomi parent processes (process components) to help tune logging and optimize process design in Boomi AtomSphere local runtime environments.
+A **Bash** script to analyze disk usage by Boomi parent processes (process components) so you can tune logging and optimize process design in Boomi AtomSphere local runtime environments.
 
 ## Overview
 
@@ -18,29 +18,29 @@ This tool scans your Boomi local Atom runtime directories to identify which proc
 
 ## Requirements
 
-- Python 3.6+
+- Bash 3.2+ (macOS default is fine)
 - Read access to Boomi Atom runtime directories
-- Standard Python libraries (no external dependencies)
+- Standard Unix tools: awk, sed, find, du, sort, head, tr, grep
 
 ## Installation
 
 1. Clone or download the script to your Boomi Atom directory
 2. Make it executable:
    ```bash
-   chmod +x boomi_log_analyzer.py
+   chmod +x boomi-runtime-log-footprint.sh
    ```
 
 ## Configuration
 
-Edit the configuration variables at the top of the script:
+Configure by passing paths and options as command-line flags:
 
-```python
-# Configuration - Modify these paths as needed
-EXECUTION_DIR = "/opt/Boomi/atom/jmxDemo/execution"
-PROCESSES_DIR = "/opt/Boomi/atom/jmxDemo/processes"  
-LOGS_DIR = "/opt/Boomi/atom/jmxDemo/logs"
-TOP_N = 20  # Number of top processes to show
-OUTPUT_CSV = "boomi_log_space_report.csv"
+```bash
+# Example paths
+EXECUTION_DIR="/opt/Boomi/atom/jmxDemo/execution"
+PROCESSES_DIR="/opt/Boomi/atom/jmxDemo/processes"
+LOGS_DIR="/opt/Boomi/atom/jmxDemo/logs"
+TOP_N=5
+OUTPUT_CSV="boomi_log_space_report.csv"
 ```
 
 ## Usage
@@ -49,8 +49,15 @@ Run from your Boomi Atom directory:
 
 ```bash
 cd /path/to/your/boomi/atom
-python3 boomi_log_analyzer.py
+./boomi-runtime-log-footprint.sh \
+  --exec  "/opt/Boomi/atom/jmxDemo/execution" \
+  --proc  "/opt/Boomi/atom/jmxDemo/processes" \
+  --logs  "/opt/Boomi/atom/jmxDemo/logs" \
+  --top   5 \
+  --out   "boomi_log_space_report.csv"
 ```
+
+Tip: add --debug to print mapping previews and troubleshooting details.
 
 ## Output
 
@@ -163,10 +170,10 @@ Execution history size: 0.06 MB
 
 The script is designed to be extensible:
 
-- **Add new analysis**: Extend the `ExecutionInfo` class with additional metadata
-- **Custom filtering**: Modify the filtering logic in `generate_execution_stats()`
-- **Enhanced parsing**: Add support for additional log types or metadata extraction
-- **Integration**: Use the CSV output for integration with monitoring systems
+- Add new metrics: extend the awk aggregation and CSV output
+- Custom filtering: add include/exclude rules on process name or folder
+- Enhanced parsing: expand process_log.xml parsing patterns
+- Integration: feed the CSV into your monitoring/BI tooling
 
 ## Limitations
 
@@ -184,6 +191,6 @@ This script is provided as-is for Boomi environment analysis and optimization pu
 
 ---
 
-**Author**: GitHub Copilot  
+**Author**: Community contributed  
 **Date**: February 2026  
-**Version**: 1.0
+**Version**: 1.0 (Bash)
