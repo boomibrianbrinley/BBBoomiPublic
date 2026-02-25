@@ -1,185 +1,189 @@
-# Boomi Runtime Execution Log Footprint
+# Boomi Process Log Space Analyzer
 
-`boomi-runtime-log-footprint.sh` is a lightweight Bash utility that analyzes a Boomi Atom runtime’s filesystem and ranks processes by **execution-history log footprint** (plus **process definition size**).
+A Python script to analyze disk usage by Boomi parent processes (process components) to help tune logging and optimize process design in Boomi AtomSphere local runtime environments.
 
-It’s designed for **local Atom runtime analysis** — no APIs required.
+## Overview
 
----
+This tool scans your Boomi local Atom runtime directories to identify which processes are consuming the most disk space through execution logs, helping you make informed decisions about logging levels and process optimization.
 
-## What it does
+## Features
 
-For the given Atom runtime directories, the script:
+- **Accurate Execution Counting**: Parses actual execution history directories to count real process executions
+- **Process Correlation**: Maps execution logs to parent processes using XML component definitions
+- **Disk Usage Analysis**: Measures both process definitions and execution log sizes
+- **Dual Rankings**: Shows top processes by total size and average execution size
+- **CSV Export**: Generates detailed reports for further analysis
+- **Active Process Focus**: Filters out processes with zero executions for cleaner results
+- **Safe & Read-Only**: Non-destructive analysis using only filesystem metadata
 
-1. Loads process definitions from the `processes/` directory
-2. Analyzes execution history under `execution/history/`
-3. Correlates executions to process names via `process_log.xml`
-4. Aggregates per process:
-   - Execution count
-   - Total execution footprint
-   - Average and max execution footprint
-   - Process definition size
-   - Combined total footprint
-5. Ranks processes by:
-   - **Total footprint**
-   - **Average footprint**
-6. Reports container log size (`*.container.log`) as **informational only** (not included in per-process totals)
+## Requirements
 
----
+- Python 3.6+
+- Read access to Boomi Atom runtime directories
+- Standard Python libraries (no external dependencies)
 
-## Expected directory structure
+## Installation
 
-The script expects the typical Boomi Atom layout:
+1. Clone or download the script to your Boomi Atom directory
+2. Make it executable:
+   ```bash
+   chmod +x boomi_log_analyzer.py
+   ```
+
+## Configuration
+
+Edit the configuration variables at the top of the script:
+
+```python
+# Configuration - Modify these paths as needed
+EXECUTION_DIR = "/opt/Boomi/atom/jmxDemo/execution"
+PROCESSES_DIR = "/opt/Boomi/atom/jmxDemo/processes"  
+LOGS_DIR = "/opt/Boomi/atom/jmxDemo/logs"
+TOP_N = 20  # Number of top processes to show
+OUTPUT_CSV = "boomi_log_space_report.csv"
+```
+
+## Usage
+
+Run from your Boomi Atom directory:
+
+```bash
+cd /path/to/your/boomi/atom
+python3 boomi_log_analyzer.py
+```
+
+## Output
+
+The script provides:
+
+### Terminal Output
+- **Process definitions loaded**: Count of XML component files processed
+- **Execution analysis**: Number of execution history directories found
+- **Two ranking tables**: 
+  - Top processes by total execution size
+  - Top processes by average execution size
+- **Summary statistics**: Total processes, executions, and disk usage
+
+### CSV Report
+Detailed report (`boomi_log_space_report.csv`) with columns:
+- Process Name
+- Process ID  
+- Process Type
+- Folder Path
+- Execution Count
+- Total Size (Bytes/MB)
+- Average Size (MB)
+- Max Size (MB)
+- Process Definition Size (MB)
+- Execution Logs Size (MB)
+
+## Example Output
 
 ```
-<atom_root>/
+Boomi Process Log Space Analyzer
+==================================================
+Execution Directory: /opt/Boomi/atom/jmxDemo/execution
+Processes Directory: /opt/Boomi/atom/jmxDemo/processes
+Logs Directory: /opt/Boomi/atom/jmxDemo/logs
+
+Step 1: Loading process definitions...
+Loading 17 process directories...
+Loaded 17 process definitions
+
+Step 2: Analyzing process directory sizes (definitions)...
+Analyzing 17 process directories...
+
+Step 3: Analyzing execution history...
+Analyzing 8 execution history directories...
+
+TOP PROCESSES BY TOTAL EXECUTION SIZE
+================================================================================
+Process Name                             Process ID                             Count  Total MB   Avg MB   Max MB  
+--------------------------------------------------------------------------------
+Generate List of Processes that have ex  6b721029-248d-4ddf-92aa-a323cffc3a8d   1      0.14       0.14     0.12   
+[Util] Get Enterprise Component          b4a05576-94a3-4be2-9dc3-51ae1734a43b   1      0.09       0.09     0.07   
+Test grep shape                          8953cead-f065-4cf0-8551-fa5e620bd2cc   6      0.03       0.01     0.01   
+
+SUMMARY
+Total processes analyzed: 3
+Total executions found: 8
+Total combined size: 0.26 MB
+Execution history size: 0.06 MB
+```
+
+## How It Works
+
+1. **Process Definition Analysis**: Scans the `/processes` directory for process XML files to build a mapping of process IDs to readable names and metadata
+
+2. **Execution History Parsing**: Analyzes `/execution/history` directories containing actual execution logs, parsing `process_log.xml` files to extract:
+   - Process names from execution messages
+   - Execution timestamps
+   - File sizes for each execution
+
+3. **Correlation & Aggregation**: Maps execution data back to process definitions and aggregates statistics by parent process
+
+4. **Filtering & Ranking**: Excludes processes with zero executions and ranks by total disk usage and average execution size
+
+## Directory Structure Expected
+
+```
+/path/to/boomi/atom/
 ├── execution/
-│   └── history/
-│       └── **/execution-*/process_log.xml
+│   ├── history/
+│   │   └── YYYY.MM.DD/
+│   │       └── execution-{uuid}-YYYY.MM.DD/
+│   │           ├── process_log.xml
+│   │           ├── data0_log.xml
+│   │           └── metrics.xml
+│   └── *.properties
 ├── processes/
-│   └── <uuid>/<uuid>.xml
+│   └── {process-uuid}/
+│       └── {process-uuid}.xml
 └── logs/
     └── *.container.log
 ```
 
-Notes:
-
-- The script scans for directories named `execution-*` under `<exec>/history`.
-- Process definitions are expected as UUID directories with a matching XML file: `<uuid>/<uuid>.xml`.
-
----
-
-## Requirements
-
-- Bash (macOS or Linux)
-- Standard Unix tools: `find`, `grep`, `sed`, `awk`, `du`, `sort`, `head`, `wc`
-
-No Python, no external dependencies.
-
----
-
-## Install
-
-1. Copy the script into your repo
-2. Make it executable:
-
-```bash
-chmod +x boomi-runtime-log-footprint.sh
-```
-
----
-
-## Usage
-
-```bash
-./boomi-runtime-log-footprint.sh   --exec <execution_dir>   --proc <processes_dir>   --logs <logs_dir>   [--top N]   [--out output.csv]   [--debug]   [--keep-temp]
-```
-
-### Required parameters
-
-| Parameter | Description |
-|---|---|
-| `--exec` | Path to Boomi execution directory (expects `<exec>/history`) |
-| `--proc` | Path to Boomi processes directory (`<uuid>/<uuid>.xml`) |
-| `--logs` | Path to Boomi logs directory (used for `*.container.log` informational total) |
-
-### Optional parameters
-
-| Parameter | Description |
-|---|---|
-| `--top N` | Number of top processes to display (default: `5`) |
-| `--out file.csv` | Write a CSV report. If omitted, **no CSV is written** |
-| `--debug` | Enable debug output (helpful for mapping issues) |
-| `--keep-temp` | Keep intermediate temp files (prints paths at end) |
-
----
-
-## Examples
-
-### macOS / Linux example (your paths)
-
-```bash
-./boomi-runtime-log-footprint.sh   --exec '/opt/Boomi/atom/jmxDemo/execution'   --proc '/opt/Boomi/atom/jmxDemo/processes'   --logs '/opt/Boomi/atom/jmxDemo/logs'   --top 10
-```
-
-### Write CSV output
-
-```bash
-./boomi-runtime-log-footprint.sh   --exec '/opt/Boomi/atom/jmxDemo/execution'   --proc '/opt/Boomi/atom/jmxDemo/processes'   --logs '/opt/Boomi/atom/jmxDemo/logs'   --out boomi-log-footprint.csv
-```
-
-### Debug + keep temp files
-
-```bash
-./boomi-runtime-log-footprint.sh   --exec '/opt/Boomi/atom/jmxDemo/execution'   --proc '/opt/Boomi/atom/jmxDemo/processes'   --logs '/opt/Boomi/atom/jmxDemo/logs'   --debug --keep-temp
-```
-
----
-
-## How execution count is calculated
-
-- Each `execution-*` directory under `<exec>/history` is treated as a single execution **if** it contains a `process_log.xml`.
-- The script extracts the process name from the first `<Message>` containing:
-
-```
-Executing Process <Process Name>
-```
-
-- To avoid accidental double counting, the script **de-dupes** by `(process_id, execution_id)`.
-
----
-
-## How size is calculated
-
-Per process:
-
-- **Execution footprint**: sum of `du -sk` sizes for counted `execution-*` directories
-- **Process definition size**: recursive `du -sk` size of the `<uuid>/` process directory
-- **Total footprint**: `execution_sum + process_definition_size`
-
-Container logs (`*.container.log`) are reported as a single total only and are **not** included in per-process totals.
-
----
-
-## Output
-
-The script prints two ranked tables:
-
-1. Top processes by **total footprint**
-2. Top processes by **average footprint**
-
-If `--out` is provided, it also writes a CSV sorted by **total footprint**.
-
----
-
 ## Troubleshooting
 
-### “Unknown process names (not mapped to IDs)”
-This usually means the process name extracted from `process_log.xml` did not match any `<Name>` in the process definition XMLs.
+### Common Issues
 
-Try running with:
+**"No execution data found"**
+- Check that `EXECUTION_DIR` points to the correct execution directory
+- Ensure execution history exists in `{EXECUTION_DIR}/history/`
 
-```bash
---debug --keep-temp
-```
+**"Unknown processes found"**
+- Some executions may not map to process definitions if XML files are missing
+- Check that `PROCESSES_DIR` contains the correct process XML files
 
-Then inspect:
-- `proc_map` (process definitions loaded)
-- `exec_events` (executions parsed + process names)
-- `stats` (final aggregation)
+**Permission errors**
+- Ensure read access to all Boomi directories
+- Run with appropriate user permissions
 
-### No executions found
-Ensure:
-- `<exec>/history` exists
-- `execution-*` directories contain `process_log.xml`
+### Extending the Script
+
+The script is designed to be extensible:
+
+- **Add new analysis**: Extend the `ExecutionInfo` class with additional metadata
+- **Custom filtering**: Modify the filtering logic in `generate_execution_stats()`
+- **Enhanced parsing**: Add support for additional log types or metadata extraction
+- **Integration**: Use the CSV output for integration with monitoring systems
+
+## Limitations
+
+- **Container logs**: Shared container logs are noted but not allocated to specific processes (would require log content parsing)
+- **Process correlation**: Relies on process name matching between executions and definitions
+- **Historical data**: Only analyzes execution history that exists on disk
+
+## Contributing
+
+Feel free to submit issues, feature requests, or pull requests to improve the analyzer.
+
+## License
+
+This script is provided as-is for Boomi environment analysis and optimization purposes.
 
 ---
 
-## Safety
-
-- Read-only analysis (no file modifications)
-- Works on local runtime directories
-
----
-
-
-
+**Author**: GitHub Copilot  
+**Date**: February 2026  
+**Version**: 1.0
