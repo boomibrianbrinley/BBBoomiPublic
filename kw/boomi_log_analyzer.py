@@ -5,7 +5,7 @@ Boomi Process Log Space Analyzer
 This script analyzes disk usage by Boomi parent processes (process components)
 to help tune logging and process design.
 
-Author: GitHub Copilot
+Author: Brian Brinley
 Date: February 2026
 """
 
@@ -20,13 +20,14 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 import re
 from datetime import datetime
+import argparse
 
-# Configuration - Modify these paths as needed
-EXECUTION_DIR = "/opt/Boomi/atom/jmxDemo/execution"
-PROCESSES_DIR = "/opt/Boomi/atom/jmxDemo/processes"  # Changed from COMPONENT_DIR
-LOGS_DIR = "/opt/Boomi/atom/jmxDemo/logs"
-TOP_N = 20  # Number of top processes to show
-OUTPUT_CSV = "boomi_log_space_report.csv"
+# Default Configuration
+DEFAULT_EXECUTION_DIR = "/opt/Boomi/atom/jmxDemo/execution"
+DEFAULT_PROCESSES_DIR = "/opt/Boomi/atom/jmxDemo/processes"
+DEFAULT_LOGS_DIR = "/opt/Boomi/atom/jmxDemo/logs"
+DEFAULT_TOP_N = 20
+DEFAULT_OUTPUT_CSV = "boomi_log_space_report.csv"
 
 @dataclass
 class ExecutionInfo:
@@ -52,6 +53,7 @@ class ExecutionStats:
     execution_count: int
     total_size_bytes: int
     max_size_bytes: int
+    process_definition_size_bytes: int = 0
     
     @property
     def total_size_mb(self) -> float:
@@ -133,15 +135,15 @@ def parse_process_xml(xml_path: Path) -> Optional[ProcessInfo]:
         print(f"Warning: Could not parse process XML {xml_path}: {e}")
         return None
 
-def load_process_mapping() -> Dict[str, ProcessInfo]:
+def load_process_mapping(processes_dir: str) -> Dict[str, ProcessInfo]:
     """
     Load all process directories and their main XML files to create a mapping from process ID to ProcessInfo.
     """
     processes = {}
-    processes_path = Path(PROCESSES_DIR)
+    processes_path = Path(processes_dir)
     
     if not processes_path.exists():
-        print(f"Warning: Processes directory not found: {PROCESSES_DIR}")
+        print(f"Warning: Processes directory not found: {processes_dir}")
         return processes
     
     # Find all process directories (those that are directories and have UUID-like names)
@@ -234,16 +236,16 @@ def create_process_name_to_id_mapping(processes: Dict[str, ProcessInfo]) -> Dict
         name_to_id[process_info.process_name] = process_id
     return name_to_id
 
-def analyze_execution_history() -> List[ExecutionInfo]:
+def analyze_execution_history(execution_dir: str) -> List[ExecutionInfo]:
     """
     Analyze execution history directories to get actual execution logs.
     Returns list of ExecutionInfo objects.
     """
     executions = []
-    execution_path = Path(EXECUTION_DIR)
+    execution_path = Path(execution_dir)
     
     if not execution_path.exists():
-        print(f"Warning: Execution directory not found: {EXECUTION_DIR}")
+        print(f"Warning: Execution directory not found: {execution_dir}")
         return executions
     
     # Look for execution history directories
@@ -266,20 +268,17 @@ def analyze_execution_history() -> List[ExecutionInfo]:
             executions.append(execution_info)
     
     return executions
-    """
-    Analyze process directories to get actual disk usage by process.
-    Returns mapping of process_id -> total_size_bytes
-    """
-def analyze_process_directories() -> Dict[str, int]:
+
+def analyze_process_directories(processes_dir: str) -> Dict[str, int]:
     """
     Analyze process directories to get process definition sizes.
     Returns mapping of process_id -> total_size_bytes
     """
     process_sizes = defaultdict(int)
-    processes_path = Path(PROCESSES_DIR)
+    processes_path = Path(processes_dir)
     
     if not processes_path.exists():
-        print(f"Warning: Processes directory not found: {PROCESSES_DIR}")
+        print(f"Warning: Processes directory not found: {processes_dir}")
         return dict(process_sizes)
     
     # Find all process directories (those that are directories and have UUID-like names)
@@ -297,18 +296,16 @@ def analyze_process_directories() -> Dict[str, int]:
     
     return dict(process_sizes)
 
-
-
-def analyze_container_logs() -> Dict[str, int]:
+def analyze_container_logs(logs_dir: str) -> Dict[str, int]:
     """
     Analyze container log files and attempt to correlate log entries with processes.
     This is a basic implementation that could be enhanced with process-specific parsing.
     """
     log_sizes = defaultdict(int)
-    logs_path = Path(LOGS_DIR)
+    logs_path = Path(logs_dir)
     
     if not logs_path.exists():
-        print(f"Warning: Logs directory not found: {LOGS_DIR}")
+        print(f"Warning: Logs directory not found: {logs_dir}")
         return dict(log_sizes)
     
     # Find all container log files
@@ -316,12 +313,8 @@ def analyze_container_logs() -> Dict[str, int]:
     print(f"Analyzing {len(log_files)} container log files...")
     
     # For now, we'll just divide the total log size among all known processes
-    # This could be enhanced to parse log entries and correlate with specific processes
     total_log_size = sum(get_file_size_recursive(log_file) for log_file in log_files)
     
-    # Since we can't easily correlate container logs to specific processes without
-    # parsing the log content (which would be memory intensive), we'll note this
-    # limitation and focus on execution-specific data
     print(f"Total container log size: {total_log_size / (1024 * 1024):.1f} MB")
     print("Note: Container logs are not process-specific and not included in per-process analysis")
     
@@ -411,7 +404,8 @@ def generate_execution_stats(processes: Dict[str, ProcessInfo],
             process_info=stats['process_info'],
             execution_count=stats['execution_count'],
             total_size_bytes=total_size,
-            max_size_bytes=max(stats['max_execution_size'], stats['process_definition_size'])
+            max_size_bytes=max(stats['max_execution_size'], stats['process_definition_size']),
+            process_definition_size_bytes=stats['process_definition_size']
         )
         stats_list.append(execution_stats)
     
@@ -421,7 +415,7 @@ def generate_execution_stats(processes: Dict[str, ProcessInfo],
     
     return stats_list
 
-def print_summary_table(stats_list: List[ExecutionStats], title: str, top_n: int = TOP_N):
+def print_summary_table(stats_list: List[ExecutionStats], title: str, top_n: int):
     """
     Print a formatted summary table to the terminal.
     """
@@ -464,14 +458,8 @@ def write_csv_report(stats_list: List[ExecutionStats], filename: str):
         
         # CSV Data rows
         for stats in stats_list:
-            definition_size_mb = 0
-            execution_size_mb = stats.total_size_mb
-            
-            # Try to separate definition size from total if possible
-            # This is approximate since we combined them in the stats
-            if hasattr(stats, 'process_definition_size_mb'):
-                definition_size_mb = stats.process_definition_size_mb
-                execution_size_mb = stats.total_size_mb - definition_size_mb
+            definition_size_mb = stats.process_definition_size_bytes / (1024 * 1024)
+            execution_size_mb = stats.total_size_mb - definition_size_mb
             
             writer.writerow([
                 stats.process_info.process_name,
@@ -483,8 +471,8 @@ def write_csv_report(stats_list: List[ExecutionStats], filename: str):
                 stats.total_size_mb,
                 stats.avg_size_mb,
                 stats.max_size_mb,
-                definition_size_mb,
-                execution_size_mb
+                f"{definition_size_mb:.2f}",
+                f"{execution_size_mb:.2f}"
             ])
     
     print(f"\nDetailed CSV report written to: {csv_path.absolute()}")
@@ -493,28 +481,37 @@ def main():
     """
     Main execution function.
     """
+    parser = argparse.ArgumentParser(description='Boomi Process Log Space Analyzer')
+    parser.add_argument('--exec', default=DEFAULT_EXECUTION_DIR, help=f'Execution directory (default: {DEFAULT_EXECUTION_DIR})')
+    parser.add_argument('--proc', default=DEFAULT_PROCESSES_DIR, help=f'Processes directory (default: {DEFAULT_PROCESSES_DIR})')
+    parser.add_argument('--logs', default=DEFAULT_LOGS_DIR, help=f'Logs directory (default: {DEFAULT_LOGS_DIR})')
+    parser.add_argument('--top', type=int, default=DEFAULT_TOP_N, help=f'Number of top processes to show (default: {DEFAULT_TOP_N})')
+    parser.add_argument('--out', default=DEFAULT_OUTPUT_CSV, help=f'Output CSV filename (default: {DEFAULT_OUTPUT_CSV})')
+
+    args = parser.parse_args()
+
     print("Boomi Process Log Space Analyzer")
     print("=" * 50)
-    print(f"Execution Directory: {EXECUTION_DIR}")
-    print(f"Processes Directory: {PROCESSES_DIR}")
-    print(f"Logs Directory: {LOGS_DIR}")
+    print(f"Execution Directory: {args.exec}")
+    print(f"Processes Directory: {args.proc}")
+    print(f"Logs Directory: {args.logs}")
     print()
     
     # Step 1: Load process definitions
     print("Step 1: Loading process definitions...")
-    processes = load_process_mapping()
+    processes = load_process_mapping(args.proc)
     
     # Step 2: Analyze process directory sizes (definitions)
     print("\nStep 2: Analyzing process directory sizes (definitions)...")
-    process_sizes = analyze_process_directories()
+    process_sizes = analyze_process_directories(args.proc)
     
     # Step 3: Analyze execution history (actual executions and logs)
     print("\nStep 3: Analyzing execution history...")
-    executions = analyze_execution_history()
+    executions = analyze_execution_history(args.exec)
     
     # Step 4: Analyze container logs (informational only for now)
     print("\nStep 4: Analyzing container logs...")
-    analyze_container_logs()
+    analyze_container_logs(args.logs)
     
     # Step 5: Generate statistics
     print("\nStep 5: Generating execution statistics...")
@@ -528,15 +525,15 @@ def main():
     
     # Sort by total size (descending)
     stats_by_total = sorted(stats_list, key=lambda x: x.total_size_bytes, reverse=True)
-    print_summary_table(stats_by_total, "TOP PROCESSES BY TOTAL EXECUTION SIZE", TOP_N)
+    print_summary_table(stats_by_total, "TOP PROCESSES BY TOTAL EXECUTION SIZE", args.top)
     
     # Sort by average size (descending)  
     stats_by_avg = sorted(stats_list, key=lambda x: x.avg_size_mb, reverse=True)
-    print_summary_table(stats_by_avg, "TOP PROCESSES BY AVERAGE EXECUTION SIZE", TOP_N)
+    print_summary_table(stats_by_avg, "TOP PROCESSES BY AVERAGE EXECUTION SIZE", args.top)
     
     # Step 6: Write CSV report
     print(f"\nStep 6: Writing CSV report...")
-    write_csv_report(stats_by_total, OUTPUT_CSV)
+    write_csv_report(stats_by_total, args.out)
     
     # Summary
     total_process_size = sum(stats.total_size_bytes for stats in stats_list)
@@ -548,11 +545,6 @@ def main():
     print(f"Total executions found: {total_executions}")
     print(f"Total combined size: {total_process_size / (1024 * 1024):.2f} MB")
     print(f"Execution history size: {execution_history_size / (1024 * 1024):.2f} MB")
-    
-    print(f"\nNote: This analysis covers both process definitions and execution history.")
-    print(f"Process definitions: XML configurations and process-specific data")
-    print(f"Execution history: Individual execution logs with process flow data")
-    print(f"Container logs ({LOGS_DIR}) are shared across all processes.")
 
 if __name__ == "__main__":
     main()
