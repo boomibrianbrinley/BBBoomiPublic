@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Recommended filename: boomi-runtime-log-footprint.sh
 # Purpose: Rank Boomi processes by execution-history log footprint (plus process definition size).
+# Author: Brian Brinley
+# Date: February 2026
 
 set -euo pipefail
 
