@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" pages="4">
+  <diagram name="Private Atom Cloud — Cloud Attachment Topology" id="private-atom-cloud-topology">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#273E59;" value="Boomi Runtime Cloud Cluster — Cloud Attachment Topology" vertex="1">
+          <mxGeometry height="45" width="680" x="490" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#666666;fontStyle=2;" value="Generic reference architecture — shows how cloud attachments bind subscriber environments to a shared private runtime cloud cluster" vertex="1">
+          <mxGeometry height="25" width="700" x="500" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cp-bg" parent="1" style="swimlane;startSize=35;fillColor=#E8EDF2;strokeColor=#273E59;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#273E59;horizontal=1;" value="Boomi Enterprise Platform" vertex="1">
+          <mxGeometry height="105" width="910" x="375" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="cp-ui" parent="cp-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Platform UI / API" vertex="1">
+          <mxGeometry height="40" width="150" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="cp-deploy" parent="cp-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Deployment Engine" vertex="1">
+          <mxGeometry height="40" width="150" x="205" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="cp-atom" parent="cp-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Runtime Management" vertex="1">
+          <mxGeometry height="40" width="150" x="380" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="cp-audit" parent="cp-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Audit &amp; Monitoring" vertex="1">
+          <mxGeometry height="40" width="150" x="730" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-1" parent="cp-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Cloud Management" vertex="1">
+          <mxGeometry height="40" width="150" x="555" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-bg" parent="1" style="swimlane;startSize=28;fillColor=#F8F8F8;strokeColor=#CCCCCC;strokeWidth=1;fontStyle=1;fontSize=11;fontColor=#273E59;" value="Legend" vertex="1">
+          <mxGeometry height="310" width="210" x="1430" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="legend-bg" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=9;" value="Private Runtime Cloud Cluster&lt;br&gt;(cluster runtime)" vertex="1">
+          <mxGeometry height="55" width="80" x="15" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1-lbl" parent="legend-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Cluster nodes&lt;br&gt;running on customer infra" vertex="1">
+          <mxGeometry height="40" width="95" x="105" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="legend-bg" style="shape=process;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=9;" value="Cloud&#xa;Attachment" vertex="1">
+          <mxGeometry height="40" width="80" x="15" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2-lbl" parent="legend-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Binds an environment&#xa;to the cloud cluster" vertex="1">
+          <mxGeometry height="35" width="95" x="105" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="legend-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=9;" value="Environment" vertex="1">
+          <mxGeometry height="35" width="80" x="15" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3-lbl" parent="legend-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Scoped runtime context&#xa;with env extensions" vertex="1">
+          <mxGeometry height="35" width="95" x="105" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4-line" edge="1" parent="legend-bg" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#273E59;strokeWidth=2;dashed=1;" value="">
+          <mxGeometry height="20" relative="1" width="60" x="15" y="220" as="geometry">
+            <mxPoint x="15" y="230" as="sourcePoint" />
+            <mxPoint x="75" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg4-lbl" parent="legend-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="HTTPS 443&#xa;outbound to control plane" vertex="1">
+          <mxGeometry height="35" width="115" x="85" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5-line" edge="1" parent="legend-bg" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FF7C69;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="15" y="270" as="sourcePoint" />
+            <mxPoint x="75" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg5-lbl" parent="legend-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Attachment relationship&#xa;(cluster → attachment)" vertex="1">
+          <mxGeometry height="40" width="115" x="85" y="258" as="geometry" />
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-6" parent="1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="Private Runtime Cloud " vertex="1">
+          <mxGeometry height="840" width="1160" x="250" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-9" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="190" />
+              <mxPoint x="645" y="190" />
+            </Array>
+            <mxPoint x="125" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cloud-cluster" parent="nB67LEtXvGSuzRKHLgto-6" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (N-number of Clusters)" vertex="1">
+          <mxGeometry height="250" width="765" x="232.5" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="head-node" parent="cloud-cluster" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="nfs" parent="cloud-cluster" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Shared NFS Mount&#xa;/boomi/share/cluster&#xa;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e-hn-nfs" edge="1" parent="cloud-cluster" source="head-node" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="nfs">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cluster-note" parent="cloud-cluster" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-4" parent="cloud-cluster" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-5" parent="cloud-cluster" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-20" edge="1" parent="cloud-cluster" source="nB67LEtXvGSuzRKHLgto-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="nfs">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nB67LEtXvGSuzRKHLgto-21" edge="1" parent="cloud-cluster" source="nB67LEtXvGSuzRKHLgto-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="nfs">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="att-header" parent="nB67LEtXvGSuzRKHLgto-6" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#273E59;" value="Cloud Attachments  (per subscriber account / environment)" vertex="1">
+          <mxGeometry height="30" width="385" x="20" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="att-dev-bg" parent="nB67LEtXvGSuzRKHLgto-6" style="swimlane;startSize=28;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="DEV Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="20" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="att-dev-node" parent="att-dev-bg" style="shape=process;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(DEV)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="att-dev-env" parent="att-dev-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: DEV" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="att-dev-ext" parent="att-dev-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• DEV API endpoints&#xa;• DEV credentials&#xa;• DEV-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="att-test-bg" parent="nB67LEtXvGSuzRKHLgto-6" style="swimlane;startSize=28;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="TEST Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="300" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="att-test-node" parent="att-test-bg" style="shape=process;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(TEST / QA)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="att-test-env" parent="att-test-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: TEST" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="att-test-ext" parent="att-test-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• TEST API endpoints&#xa;• TEST credentials&#xa;• TEST-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="att-uat-bg" parent="nB67LEtXvGSuzRKHLgto-6" style="swimlane;startSize=28;fillColor=#F5ECF5;strokeColor=#A93FA5;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="UAT / Pre-Prod Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="580" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="att-uat-node" parent="att-uat-bg" style="shape=process;whiteSpace=wrap;html=1;fillColor=#A93FA5;strokeColor=#7A2E76;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(UAT / Pre-Prod)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="att-uat-env" parent="att-uat-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A93FA5;strokeColor=#7A2E76;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: UAT" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="att-uat-ext" parent="att-uat-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• UAT API endpoints&#xa;• UAT credentials&#xa;• UAT-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="att-prod-bg" parent="nB67LEtXvGSuzRKHLgto-6" style="swimlane;startSize=28;fillColor=#E8EDF2;strokeColor=#273E59;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="PROD Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="860" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="att-prod-node" parent="att-prod-bg" style="shape=process;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(PROD)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="att-prod-env" parent="att-prod-bg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: PROD" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="att-prod-ext" parent="att-prod-bg" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• PROD API endpoints&#xa;• PROD credentials&#xa;• PROD-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="sub-att-a" parent="nB67LEtXvGSuzRKHLgto-6" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept A / Region A)" vertex="1">
+          <mxGeometry height="55" width="175" x="740" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="sub-att-b" parent="nB67LEtXvGSuzRKHLgto-6" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept B / Region B)" vertex="1">
+          <mxGeometry height="55" width="175" x="950" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cluster-dev" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" source="cloud-cluster" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FF7C69;strokeWidth=2;exitX=0.17;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#FF7C69;fontStyle=1;" target="att-dev-bg" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cluster-test" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" source="cloud-cluster" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FF7C69;strokeWidth=2;exitX=0.37;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#FF7C69;fontStyle=1;" target="att-test-bg" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cluster-uat" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" source="cloud-cluster" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A93FA5;strokeWidth=2;exitX=0.57;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#A93FA5;fontStyle=1;" target="att-uat-bg" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cluster-prod" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" source="cloud-cluster" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=2;exitX=0.77;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#273E59;fontStyle=1;" target="att-prod-bg" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-prod-suba" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" source="att-prod-bg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sub-att-a">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="660" />
+              <mxPoint x="828" y="660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-prod-subb" edge="1" parent="nB67LEtXvGSuzRKHLgto-6" source="att-prod-bg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="sub-att-b">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="660" />
+              <mxPoint x="1038" y="660" />
+              <mxPoint x="1038" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="key-concepts" parent="nB67LEtXvGSuzRKHLgto-6" style="text;html=1;strokeColor=#CCCCCC;fillColor=#FFFDE7;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#273E59;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" value="&lt;b&gt;Key Concepts:&lt;/b&gt; &lt;br&gt;&lt;br&gt;&amp;nbsp;(1) The cloud cluster is a shared runtime — all attached environments execute processes on the same nodes. &lt;br&gt;&amp;nbsp;(2) Each Cloud Attachment carries its own environment extensions (connection overrides, credentials, properties), so the same deployed package behaves differently per environment. &lt;br&gt;&amp;nbsp;(3) Sub-attachments allow one account to further isolate workloads (e.g., by department or region) within a single environment. &lt;br&gt;&amp;nbsp;(4) A Private Runtime Cloud can support multiple Cloud Clusters.&amp;nbsp;" vertex="1">
+          <mxGeometry height="120" width="620" x="20" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="sub-header" parent="nB67LEtXvGSuzRKHLgto-6" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" value="Optional: Sub-Attachments (department / tenant isolation within a single environment)" vertex="1">
+          <mxGeometry height="25" width="428" x="730" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cp-cluster" edge="1" parent="1" source="cp-bg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=2;dashed=1;fontSize=9;fontColor=#273E59;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="nB67LEtXvGSuzRKHLgto-6" value="HTTPS 443 outbound-only&#xa;(runtime → control plane)">
+          <mxGeometry relative="1" x="-0.0526" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="830" y="300" />
+              <mxPoint x="830" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Private Atom Cloud - Cloud Attachment Topology - Multiple Clusters" id="funbeFWwvnMAx70HlxeX">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-0" />
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-1" parent="nRpKNWehDNqwBeLrhEhg-0" />
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-2" parent="nRpKNWehDNqwBeLrhEhg-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#273E59;" value="Boomi Runtime Cloud Cluster — Multiple Clusters Topology" vertex="1">
+          <mxGeometry height="45" width="680" x="490" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-3" parent="nRpKNWehDNqwBeLrhEhg-1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#666666;fontStyle=2;" value="Generic reference architecture — shows how cloud clusters bind subscriber environments to a shared private runtime cloud" vertex="1">
+          <mxGeometry height="25" width="700" x="500" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-4" parent="nRpKNWehDNqwBeLrhEhg-1" style="swimlane;startSize=35;fillColor=#E8EDF2;strokeColor=#273E59;strokeWidth=2;fontStyle=1;fontSize=13;fontColor=#273E59;horizontal=1;" value="Boomi Enterprise Platform" vertex="1">
+          <mxGeometry height="105" width="910" x="375" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-5" parent="nRpKNWehDNqwBeLrhEhg-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Platform UI / API" vertex="1">
+          <mxGeometry height="40" width="150" x="30" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-6" parent="nRpKNWehDNqwBeLrhEhg-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Deployment Engine" vertex="1">
+          <mxGeometry height="40" width="150" x="205" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-7" parent="nRpKNWehDNqwBeLrhEhg-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Runtime Management" vertex="1">
+          <mxGeometry height="40" width="150" x="380" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-8" parent="nRpKNWehDNqwBeLrhEhg-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Audit &amp; Monitoring" vertex="1">
+          <mxGeometry height="40" width="150" x="730" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-9" parent="nRpKNWehDNqwBeLrhEhg-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Cloud Management" vertex="1">
+          <mxGeometry height="40" width="150" x="555" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-10" parent="nRpKNWehDNqwBeLrhEhg-1" style="swimlane;startSize=28;fillColor=#F8F8F8;strokeColor=#CCCCCC;strokeWidth=1;fontStyle=1;fontSize=11;fontColor=#273E59;" value="Legend" vertex="1">
+          <mxGeometry height="310" width="210" x="1430" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-11" parent="nRpKNWehDNqwBeLrhEhg-10" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=9;" value="Private Runtime Cloud Cluster&lt;br&gt;(cluster runtime)" vertex="1">
+          <mxGeometry height="55" width="80" x="15" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-12" parent="nRpKNWehDNqwBeLrhEhg-10" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Cluster nodes&lt;br&gt;running on customer infra" vertex="1">
+          <mxGeometry height="40" width="95" x="105" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-13" parent="nRpKNWehDNqwBeLrhEhg-10" style="shape=process;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=9;" value="Cloud&#xa;Attachment" vertex="1">
+          <mxGeometry height="40" width="80" x="15" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-14" parent="nRpKNWehDNqwBeLrhEhg-10" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Binds an environment&#xa;to the cloud cluster" vertex="1">
+          <mxGeometry height="35" width="95" x="105" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-15" parent="nRpKNWehDNqwBeLrhEhg-10" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=9;" value="Environment" vertex="1">
+          <mxGeometry height="35" width="80" x="15" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-16" parent="nRpKNWehDNqwBeLrhEhg-10" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Scoped runtime context&#xa;with env extensions" vertex="1">
+          <mxGeometry height="35" width="95" x="105" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-17" edge="1" parent="nRpKNWehDNqwBeLrhEhg-10" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#273E59;strokeWidth=2;dashed=1;" value="">
+          <mxGeometry height="20" relative="1" width="60" x="15" y="220" as="geometry">
+            <mxPoint x="15" y="230" as="sourcePoint" />
+            <mxPoint x="75" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-18" parent="nRpKNWehDNqwBeLrhEhg-10" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="HTTPS 443&#xa;outbound to control plane" vertex="1">
+          <mxGeometry height="35" width="115" x="85" y="218" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-19" edge="1" parent="nRpKNWehDNqwBeLrhEhg-10" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FF7C69;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="15" y="270" as="sourcePoint" />
+            <mxPoint x="75" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-20" parent="nRpKNWehDNqwBeLrhEhg-10" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Attachment relationship&#xa;(cluster → attachment)" vertex="1">
+          <mxGeometry height="40" width="115" x="85" y="258" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-21" parent="nRpKNWehDNqwBeLrhEhg-1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="Private Runtime Cloud " vertex="1">
+          <mxGeometry height="840" width="1160" x="250" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-22" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="190" />
+              <mxPoint x="645" y="190" />
+            </Array>
+            <mxPoint x="125" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-23" parent="nRpKNWehDNqwBeLrhEhg-21" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (N-number of Clusters)" vertex="1">
+          <mxGeometry height="250" width="765" x="232.5" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-24" parent="nRpKNWehDNqwBeLrhEhg-23" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-25" parent="nRpKNWehDNqwBeLrhEhg-23" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Shared NFS Mount&#xa;/boomi/share/cluster&#xa;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-26" edge="1" parent="nRpKNWehDNqwBeLrhEhg-23" source="nRpKNWehDNqwBeLrhEhg-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="nRpKNWehDNqwBeLrhEhg-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-27" parent="nRpKNWehDNqwBeLrhEhg-23" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-28" parent="nRpKNWehDNqwBeLrhEhg-23" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-29" parent="nRpKNWehDNqwBeLrhEhg-23" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-30" edge="1" parent="nRpKNWehDNqwBeLrhEhg-23" source="nRpKNWehDNqwBeLrhEhg-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="nRpKNWehDNqwBeLrhEhg-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-31" edge="1" parent="nRpKNWehDNqwBeLrhEhg-23" source="nRpKNWehDNqwBeLrhEhg-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="nRpKNWehDNqwBeLrhEhg-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-32" parent="nRpKNWehDNqwBeLrhEhg-21" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#273E59;" value="Cloud Attachments  (per subscriber account / environment)" vertex="1">
+          <mxGeometry height="30" width="385" x="20" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-33" parent="nRpKNWehDNqwBeLrhEhg-21" style="swimlane;startSize=28;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="DEV Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="20" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-34" parent="nRpKNWehDNqwBeLrhEhg-33" style="shape=process;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(DEV)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-35" parent="nRpKNWehDNqwBeLrhEhg-33" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: DEV" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-36" parent="nRpKNWehDNqwBeLrhEhg-33" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• DEV API endpoints&#xa;• DEV credentials&#xa;• DEV-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-37" parent="nRpKNWehDNqwBeLrhEhg-21" style="swimlane;startSize=28;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="TEST Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="300" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-38" parent="nRpKNWehDNqwBeLrhEhg-37" style="shape=process;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(TEST / QA)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-39" parent="nRpKNWehDNqwBeLrhEhg-37" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: TEST" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-40" parent="nRpKNWehDNqwBeLrhEhg-37" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• TEST API endpoints&#xa;• TEST credentials&#xa;• TEST-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-41" parent="nRpKNWehDNqwBeLrhEhg-21" style="swimlane;startSize=28;fillColor=#F5ECF5;strokeColor=#A93FA5;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="UAT / Pre-Prod Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="580" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-42" parent="nRpKNWehDNqwBeLrhEhg-41" style="shape=process;whiteSpace=wrap;html=1;fillColor=#A93FA5;strokeColor=#7A2E76;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(UAT / Pre-Prod)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-43" parent="nRpKNWehDNqwBeLrhEhg-41" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A93FA5;strokeColor=#7A2E76;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: UAT" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-44" parent="nRpKNWehDNqwBeLrhEhg-41" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• UAT API endpoints&#xa;• UAT credentials&#xa;• UAT-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-45" parent="nRpKNWehDNqwBeLrhEhg-21" style="swimlane;startSize=28;fillColor=#E8EDF2;strokeColor=#273E59;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="PROD Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="860" y="398" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-46" parent="nRpKNWehDNqwBeLrhEhg-45" style="shape=process;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(PROD)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-47" parent="nRpKNWehDNqwBeLrhEhg-45" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: PROD" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-48" parent="nRpKNWehDNqwBeLrhEhg-45" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• PROD API endpoints&#xa;• PROD credentials&#xa;• PROD-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-49" parent="nRpKNWehDNqwBeLrhEhg-21" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept A / Region A)" vertex="1">
+          <mxGeometry height="55" width="175" x="740" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-50" parent="nRpKNWehDNqwBeLrhEhg-21" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept B / Region B)" vertex="1">
+          <mxGeometry height="55" width="175" x="950" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-51" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" source="nRpKNWehDNqwBeLrhEhg-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FF7C69;strokeWidth=2;exitX=0.17;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#FF7C69;fontStyle=1;" target="nRpKNWehDNqwBeLrhEhg-33" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-52" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" source="nRpKNWehDNqwBeLrhEhg-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#FF7C69;strokeWidth=2;exitX=0.37;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#FF7C69;fontStyle=1;" target="nRpKNWehDNqwBeLrhEhg-37" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-53" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" source="nRpKNWehDNqwBeLrhEhg-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#A93FA5;strokeWidth=2;exitX=0.57;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#A93FA5;fontStyle=1;" target="nRpKNWehDNqwBeLrhEhg-41" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-54" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" source="nRpKNWehDNqwBeLrhEhg-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=2;exitX=0.77;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#273E59;fontStyle=1;" target="nRpKNWehDNqwBeLrhEhg-45" value="attaches">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-55" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" source="nRpKNWehDNqwBeLrhEhg-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="nRpKNWehDNqwBeLrhEhg-49">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="660" />
+              <mxPoint x="828" y="660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-56" edge="1" parent="nRpKNWehDNqwBeLrhEhg-21" source="nRpKNWehDNqwBeLrhEhg-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="nRpKNWehDNqwBeLrhEhg-50">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="660" />
+              <mxPoint x="1038" y="660" />
+              <mxPoint x="1038" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-57" parent="nRpKNWehDNqwBeLrhEhg-21" style="text;html=1;strokeColor=#CCCCCC;fillColor=#FFFDE7;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#273E59;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" value="&lt;b&gt;Key Concepts:&lt;/b&gt; &lt;br&gt;&lt;br&gt;&amp;nbsp;(1) The cloud cluster is a shared runtime — all attached environments execute processes on the same nodes. &lt;br&gt;&amp;nbsp;(2) Each Cloud Attachment carries its own environment extensions (connection overrides, credentials, properties), so the same deployed package behaves differently per environment. &lt;br&gt;&amp;nbsp;(3) Sub-attachments allow one account to further isolate workloads (e.g., by department or region) within a single environment. &lt;br&gt;&amp;nbsp;(4) A Private Runtime Cloud can support multiple Cloud Clusters.&amp;nbsp;" vertex="1">
+          <mxGeometry height="120" width="620" x="20" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-58" parent="nRpKNWehDNqwBeLrhEhg-21" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" value="Optional: Sub-Attachments (department / tenant isolation within a single environment)" vertex="1">
+          <mxGeometry height="25" width="428" x="730" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="nRpKNWehDNqwBeLrhEhg-59" edge="1" parent="nRpKNWehDNqwBeLrhEhg-1" source="nRpKNWehDNqwBeLrhEhg-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=2;dashed=1;fontSize=9;fontColor=#273E59;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="nRpKNWehDNqwBeLrhEhg-21" value="HTTPS 443 outbound-only&#xa;(runtime → control plane)">
+          <mxGeometry relative="1" x="-0.0526" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="830" y="300" />
+              <mxPoint x="830" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="GBWx7j8p-7no2r0T0yqN" name="S Review">
+    <mxGraphModel dx="3598" dy="2695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-40" parent="1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;swimlaneFillColor=default;" value="STATELESS Private Runtime Cloud" vertex="1">
+          <mxGeometry height="920" width="2430" x="60" y="-320" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-41" edge="1" parent="8BQmkflzbMTtHJaKw1Nf-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="190" />
+              <mxPoint x="645" y="190" />
+            </Array>
+            <mxPoint x="125" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-26" parent="8BQmkflzbMTtHJaKw1Nf-40" style="text;html=1;whiteSpace=wrap;strokeColor=#b85450;fillColor=#FFF5F4;align=left;verticalAlign=middle;rounded=0;" value="Boomi Environment: Production - 2&lt;br&gt;GW Attachment path = /linux" vertex="1">
+          <mxGeometry height="30" width="200" x="1868" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-70" parent="8BQmkflzbMTtHJaKw1Nf-40" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;" value="Gateway Load Balancer&lt;br&gt;(&lt;span style=&quot;white-space: normal;&quot;&gt;api.servus.com)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="74.94" x="500" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-5" parent="8BQmkflzbMTtHJaKw1Nf-40" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.computer;pointerEvents=1;" value="" vertex="1">
+          <mxGeometry height="45" width="50" x="250" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-17" edge="1" parent="8BQmkflzbMTtHJaKw1Nf-40" source="8XHLroH37z03WWO2X9DE-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="8BQmkflzbMTtHJaKw1Nf-70">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300.05" y="145.47" />
+            </Array>
+            <mxPoint x="759.9999999999998" y="104.99999999999989" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="INQxzqG87ICHOkUxS_r1-1" parent="8BQmkflzbMTtHJaKw1Nf-40" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cluster3.internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="180" x="1490" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-3" edge="1" parent="1" source="qHQuOtT4G5KHP8tuQQ5G-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.364;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#b0e3e6;strokeColor=#0e8088;" target="h1MTzed5FcKdGycvGBdQ-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="358.43" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-4" edge="1" parent="1" source="qHQuOtT4G5KHP8tuQQ5G-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.563;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#b0e3e6;strokeColor=#0e8088;" target="h1MTzed5FcKdGycvGBdQ-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="170" />
+              <mxPoint x="510" y="255" />
+              <mxPoint x="510.71" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-2" edge="1" parent="1" source="qHQuOtT4G5KHP8tuQQ5G-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.17;entryY=0.01;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#b0e3e6;strokeColor=#0e8088;" target="h1MTzed5FcKdGycvGBdQ-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210.07" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-8" edge="1" parent="1" source="j5gW_ExbnZQ5JV7GD02G-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.563;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="190" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-7" edge="1" parent="1" source="j5gW_ExbnZQ5JV7GD02G-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1165" y="170" />
+            </Array>
+            <mxPoint x="994" y="190" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-6" edge="1" parent="1" source="j5gW_ExbnZQ5JV7GD02G-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1010" y="170" />
+            </Array>
+            <mxPoint x="1010" y="190" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-1" parent="1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="STATELESS - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (01) " vertex="1">
+          <mxGeometry height="250" width="765" x="80" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-2" parent="h1MTzed5FcKdGycvGBdQ-1" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-3" parent="h1MTzed5FcKdGycvGBdQ-1" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;SMB Source&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-4" edge="1" parent="h1MTzed5FcKdGycvGBdQ-1" source="h1MTzed5FcKdGycvGBdQ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="h1MTzed5FcKdGycvGBdQ-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-5" parent="h1MTzed5FcKdGycvGBdQ-1" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-6" parent="h1MTzed5FcKdGycvGBdQ-1" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-7" parent="h1MTzed5FcKdGycvGBdQ-1" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-8" edge="1" parent="h1MTzed5FcKdGycvGBdQ-1" source="h1MTzed5FcKdGycvGBdQ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-9" edge="1" parent="h1MTzed5FcKdGycvGBdQ-1" source="h1MTzed5FcKdGycvGBdQ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-10" parent="1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="STATELESS - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (02)" vertex="1">
+          <mxGeometry height="250" width="765" x="885" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-11" parent="h1MTzed5FcKdGycvGBdQ-10" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-12" parent="h1MTzed5FcKdGycvGBdQ-10" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;SMB Source&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-13" edge="1" parent="h1MTzed5FcKdGycvGBdQ-10" source="h1MTzed5FcKdGycvGBdQ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="h1MTzed5FcKdGycvGBdQ-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-14" parent="h1MTzed5FcKdGycvGBdQ-10" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-15" parent="h1MTzed5FcKdGycvGBdQ-10" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-16" parent="h1MTzed5FcKdGycvGBdQ-10" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-17" edge="1" parent="h1MTzed5FcKdGycvGBdQ-10" source="h1MTzed5FcKdGycvGBdQ-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1MTzed5FcKdGycvGBdQ-18" edge="1" parent="h1MTzed5FcKdGycvGBdQ-10" source="h1MTzed5FcKdGycvGBdQ-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="h1MTzed5FcKdGycvGBdQ-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-1" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="686.5" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-5" edge="1" parent="1" source="qHQuOtT4G5KHP8tuQQ5G-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="824.9999999999998" y="-90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qHQuOtT4G5KHP8tuQQ5G-13" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="80" width="120" x="765" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-3" edge="1" parent="1" source="8XHLroH37z03WWO2X9DE-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" target="qHQuOtT4G5KHP8tuQQ5G-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="825.0000000000002" y="-10" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-20" connectable="0" parent="j5gW_ExbnZQ5JV7GD02G-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ALB2" vertex="1">
+          <mxGeometry relative="1" x="0.6696" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-4" edge="1" parent="1" source="8XHLroH37z03WWO2X9DE-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="j5gW_ExbnZQ5JV7GD02G-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="825.0000000000002" y="-10" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-21" connectable="0" parent="j5gW_ExbnZQ5JV7GD02G-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ALB3" vertex="1">
+          <mxGeometry relative="1" x="0.6057" y="-1" as="geometry">
+            <mxPoint x="1" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-2" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;perimeter=rectanglePerimeter;backgroundOutline=0;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="845" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#dae8fc;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="Boomi GW &lt;div&gt;Cluster&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="64" x="796" y="-193" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="60" x="795" y="-140" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cluster1.internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="200" x="533" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Node Pool 1" vertex="1">
+          <mxGeometry height="30" width="90" x="885" y="-65" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Node Pool 2" vertex="1">
+          <mxGeometry height="20" width="72" x="733" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Node Pool 3" vertex="1">
+          <mxGeometry height="19.33" width="58" x="842" y="40.67" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="SWS External URL Value = internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="330" x="181" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="j5gW_ExbnZQ5JV7GD02G-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="SWS External URL Value = internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="315" x="1020" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cluster2.internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="180" x="920" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-4" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="765" y="-90" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-6" parent="1" style="swimlane;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#333333;horizontal=1;" value="STATELESS - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (03)" vertex="1">
+          <mxGeometry height="250" width="765" x="1700" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-7" parent="8XHLroH37z03WWO2X9DE-6" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-8" parent="8XHLroH37z03WWO2X9DE-6" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;NFS Mount&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-9" edge="1" parent="8XHLroH37z03WWO2X9DE-6" source="8XHLroH37z03WWO2X9DE-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="8XHLroH37z03WWO2X9DE-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-10" parent="8XHLroH37z03WWO2X9DE-6" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-11" parent="8XHLroH37z03WWO2X9DE-6" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-12" parent="8XHLroH37z03WWO2X9DE-6" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-13" edge="1" parent="8XHLroH37z03WWO2X9DE-6" source="8XHLroH37z03WWO2X9DE-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-14" edge="1" parent="8XHLroH37z03WWO2X9DE-6" source="8XHLroH37z03WWO2X9DE-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-19" edge="1" parent="1" source="8XHLroH37z03WWO2X9DE-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="8XHLroH37z03WWO2X9DE-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1891.29" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-15" parent="1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#CCCCCC;perimeter=rectanglePerimeter;backgroundOutline=0;fontColor=#333333;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="1690" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-16" edge="1" parent="1" source="8XHLroH37z03WWO2X9DE-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="8XHLroH37z03WWO2X9DE-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="80" as="sourcePoint" />
+            <mxPoint x="990" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-17" connectable="0" parent="8XHLroH37z03WWO2X9DE-16" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ALB4" vertex="1">
+          <mxGeometry relative="1" x="0.6057" y="-1" as="geometry">
+            <mxPoint x="140" y="29" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Node Pool 4" vertex="1">
+          <mxGeometry height="19.33" width="58" x="1688" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-21" edge="1" parent="1" source="8XHLroH37z03WWO2X9DE-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.38;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1990.71" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-22" edge="1" parent="1" source="8XHLroH37z03WWO2X9DE-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.559;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2127.57" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="SWS External URL Value = internal.api.servus.com" vertex="1">
+          <mxGeometry height="30" width="315" x="1834" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Environment: Production - 1" vertex="1">
+          <mxGeometry height="30" width="172" x="209" y="122" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Environment: Production - 1" vertex="1">
+          <mxGeometry height="30" width="172" x="1178.5" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-1" parent="1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;swimlaneFillColor=default;" value="Private Runtime Cloud " vertex="1">
+          <mxGeometry height="840" width="1160" x="60" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-2" edge="1" parent="8BQmkflzbMTtHJaKw1Nf-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="190" />
+              <mxPoint x="645" y="190" />
+            </Array>
+            <mxPoint x="125" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-12" parent="8BQmkflzbMTtHJaKw1Nf-1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#273E59;" value="Cloud Attachments  (per subscriber account / environment)" vertex="1">
+          <mxGeometry height="30" width="385" x="20" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-25" parent="8BQmkflzbMTtHJaKw1Nf-1" style="swimlane;startSize=28;fillColor=#E8EDF2;strokeColor=#273E59;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="PROD Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="420" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-26" parent="8BQmkflzbMTtHJaKw1Nf-25" style="shape=process;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(PROD)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-27" parent="8BQmkflzbMTtHJaKw1Nf-25" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: PROD Stateful" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-28" parent="8BQmkflzbMTtHJaKw1Nf-25" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• PROD API endpoints&#xa;• PROD credentials&#xa;• PROD-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-29" parent="8BQmkflzbMTtHJaKw1Nf-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept A / Region A)" vertex="1">
+          <mxGeometry height="55" width="175" x="720" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-30" parent="8BQmkflzbMTtHJaKw1Nf-1" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept B / Region B)" vertex="1">
+          <mxGeometry height="55" width="175" x="950" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-34" edge="1" parent="8BQmkflzbMTtHJaKw1Nf-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#273E59;fontStyle=1;" target="8BQmkflzbMTtHJaKw1Nf-25" value="attaches">
+          <mxGeometry relative="1" x="0.6061" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="540" y="300" />
+            </Array>
+            <mxPoint x="790" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-36" edge="1" parent="8BQmkflzbMTtHJaKw1Nf-1" source="8BQmkflzbMTtHJaKw1Nf-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="8BQmkflzbMTtHJaKw1Nf-30">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1037.5" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-37" parent="8BQmkflzbMTtHJaKw1Nf-1" style="text;html=1;strokeColor=#CCCCCC;fillColor=#FFFDE7;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#273E59;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" value="&lt;b&gt;Key Concepts:&lt;/b&gt; &lt;br&gt;&lt;br&gt;&amp;nbsp;(1) The cloud cluster is a shared runtime — all attached environments execute processes on the same nodes. &lt;br&gt;&amp;nbsp;(2) Each Cloud Attachment carries its own environment extensions (connection overrides, credentials, properties), so the same deployed package behaves differently per environment. &lt;br&gt;&amp;nbsp;(3) Sub-attachments allow one account to further isolate workloads (e.g., by department or region) within a single environment. &lt;br&gt;&amp;nbsp;(4) A Private Runtime Cloud can support multiple Cloud Clusters.&amp;nbsp;" vertex="1">
+          <mxGeometry height="120" width="620" x="20" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-38" parent="8BQmkflzbMTtHJaKw1Nf-1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" value="Optional: Sub-Attachments (department / tenant isolation within a single environment)" vertex="1">
+          <mxGeometry height="25" width="428" x="730" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-27" parent="8BQmkflzbMTtHJaKw1Nf-1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="STATEFUL - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (01)" vertex="1">
+          <mxGeometry height="250" width="765" x="170" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-28" parent="8XHLroH37z03WWO2X9DE-27" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-29" parent="8XHLroH37z03WWO2X9DE-27" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;NFS Mount&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-30" edge="1" parent="8XHLroH37z03WWO2X9DE-27" source="8XHLroH37z03WWO2X9DE-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="8XHLroH37z03WWO2X9DE-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-31" parent="8XHLroH37z03WWO2X9DE-27" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-32" parent="8XHLroH37z03WWO2X9DE-27" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-33" parent="8XHLroH37z03WWO2X9DE-27" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-34" edge="1" parent="8XHLroH37z03WWO2X9DE-27" source="8XHLroH37z03WWO2X9DE-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8XHLroH37z03WWO2X9DE-35" edge="1" parent="8XHLroH37z03WWO2X9DE-27" source="8XHLroH37z03WWO2X9DE-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-39" edge="1" parent="8BQmkflzbMTtHJaKw1Nf-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="8BQmkflzbMTtHJaKw1Nf-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="500" />
+            </Array>
+            <mxPoint x="650" y="500" as="sourcePoint" />
+            <mxPoint x="797.5" y="678" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-71" edge="1" parent="1" source="8BQmkflzbMTtHJaKw1Nf-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.095;entryY=0.604;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" target="qHQuOtT4G5KHP8tuQQ5G-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="634.89" y="-171.68" />
+            </Array>
+            <mxPoint x="820" y="-260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-68" edge="1" parent="1" source="qHQuOtT4G5KHP8tuQQ5G-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.855;exitY=0.515;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.855;entryY=0.145;entryDx=0;entryDy=0;entryPerimeter=0;" target="8XHLroH37z03WWO2X9DE-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1783.21" y="-178.81" />
+            </Array>
+            <mxPoint x="950.0000000000002" y="-45" as="sourcePoint" />
+            <mxPoint x="1750" y="135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8BQmkflzbMTtHJaKw1Nf-69" connectable="0" parent="8BQmkflzbMTtHJaKw1Nf-68" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="linux.internal.api.servus.com" vertex="1">
+          <mxGeometry relative="1" x="0.1642" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Generic Review" id="mK9SlXJM2f97ZuBl9NI0">
+    <mxGraphModel dx="2159" dy="1957" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-0" />
+        <mxCell id="8JWx7wgMDzW8q2umihq1-1" parent="8JWx7wgMDzW8q2umihq1-0" />
+        <mxCell id="8JWx7wgMDzW8q2umihq1-2" parent="8JWx7wgMDzW8q2umihq1-1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;swimlaneFillColor=default;" value="STATELESS Private Runtime Cloud" vertex="1">
+          <mxGeometry height="920" width="2430" x="60" y="-320" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-3" edge="1" parent="8JWx7wgMDzW8q2umihq1-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="190" />
+              <mxPoint x="645" y="190" />
+            </Array>
+            <mxPoint x="125" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-4" parent="8JWx7wgMDzW8q2umihq1-2" style="text;html=1;whiteSpace=wrap;strokeColor=#b85450;fillColor=#FFF5F4;align=left;verticalAlign=middle;rounded=0;" value="Boomi Environment: Production - 2&lt;br&gt;GW Attachment path = /linux" vertex="1">
+          <mxGeometry height="30" width="200" x="1868" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-5" parent="8JWx7wgMDzW8q2umihq1-2" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;" value="Gateway Load Balancer&lt;br&gt;(&lt;span style=&quot;white-space: normal;&quot;&gt;api.domain.com)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="55" width="74.94" x="500" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-6" parent="8JWx7wgMDzW8q2umihq1-2" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.computer;pointerEvents=1;" value="" vertex="1">
+          <mxGeometry height="45" width="50" x="250" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-7" edge="1" parent="8JWx7wgMDzW8q2umihq1-2" source="8JWx7wgMDzW8q2umihq1-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300.05" y="145.47" />
+            </Array>
+            <mxPoint x="759.9999999999998" y="104.99999999999989" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-8" parent="8JWx7wgMDzW8q2umihq1-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cluster3.internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="180" x="1490" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-9" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.364;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#b0e3e6;strokeColor=#0e8088;" target="8JWx7wgMDzW8q2umihq1-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="358.43" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-10" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.563;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#b0e3e6;strokeColor=#0e8088;" target="8JWx7wgMDzW8q2umihq1-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="170" />
+              <mxPoint x="510" y="255" />
+              <mxPoint x="510.71" y="255" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-11" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.17;entryY=0.01;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#b0e3e6;strokeColor=#0e8088;" target="8JWx7wgMDzW8q2umihq1-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210.07" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-12" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.563;entryY=0.002;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="190" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-13" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1165" y="170" />
+            </Array>
+            <mxPoint x="994" y="190" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-14" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1010" y="170" />
+            </Array>
+            <mxPoint x="1010" y="190" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-15" parent="8JWx7wgMDzW8q2umihq1-1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="STATELESS - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (01) " vertex="1">
+          <mxGeometry height="250" width="765" x="80" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-16" parent="8JWx7wgMDzW8q2umihq1-15" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-17" parent="8JWx7wgMDzW8q2umihq1-15" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;SMB Source&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-18" edge="1" parent="8JWx7wgMDzW8q2umihq1-15" source="8JWx7wgMDzW8q2umihq1-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="8JWx7wgMDzW8q2umihq1-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-19" parent="8JWx7wgMDzW8q2umihq1-15" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-20" parent="8JWx7wgMDzW8q2umihq1-15" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-21" parent="8JWx7wgMDzW8q2umihq1-15" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-22" edge="1" parent="8JWx7wgMDzW8q2umihq1-15" source="8JWx7wgMDzW8q2umihq1-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-23" edge="1" parent="8JWx7wgMDzW8q2umihq1-15" source="8JWx7wgMDzW8q2umihq1-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-24" parent="8JWx7wgMDzW8q2umihq1-1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="STATELESS - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (02)" vertex="1">
+          <mxGeometry height="250" width="765" x="885" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-25" parent="8JWx7wgMDzW8q2umihq1-24" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-26" parent="8JWx7wgMDzW8q2umihq1-24" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;SMB Source&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-27" edge="1" parent="8JWx7wgMDzW8q2umihq1-24" source="8JWx7wgMDzW8q2umihq1-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="8JWx7wgMDzW8q2umihq1-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-28" parent="8JWx7wgMDzW8q2umihq1-24" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-29" parent="8JWx7wgMDzW8q2umihq1-24" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-30" parent="8JWx7wgMDzW8q2umihq1-24" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-31" edge="1" parent="8JWx7wgMDzW8q2umihq1-24" source="8JWx7wgMDzW8q2umihq1-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-32" edge="1" parent="8JWx7wgMDzW8q2umihq1-24" source="8JWx7wgMDzW8q2umihq1-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-33" parent="8JWx7wgMDzW8q2umihq1-1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="686.5" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-34" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="824.9999999999998" y="-90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-35" parent="8JWx7wgMDzW8q2umihq1-1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="80" width="120" x="765" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-36" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" target="8JWx7wgMDzW8q2umihq1-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="825.0000000000002" y="-10" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-37" connectable="0" parent="8JWx7wgMDzW8q2umihq1-36" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ALB2" vertex="1">
+          <mxGeometry relative="1" x="0.6696" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-38" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="8JWx7wgMDzW8q2umihq1-40">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="825.0000000000002" y="-10" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-39" connectable="0" parent="8JWx7wgMDzW8q2umihq1-38" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ALB3" vertex="1">
+          <mxGeometry relative="1" x="0.6057" y="-1" as="geometry">
+            <mxPoint x="1" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-40" parent="8JWx7wgMDzW8q2umihq1-1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;perimeter=rectanglePerimeter;backgroundOutline=0;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="845" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-41" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=#dae8fc;align=center;verticalAlign=middle;rounded=0;fontStyle=1" value="Boomi GW &lt;div&gt;Cluster&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="64" x="796" y="-193" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-42" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="60" x="795" y="-140" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-43" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cluster1.internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="200" x="533" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-44" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Node Pool 1" vertex="1">
+          <mxGeometry height="30" width="90" x="885" y="-65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-45" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Node Pool 2" vertex="1">
+          <mxGeometry height="20" width="72" x="733" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-46" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Node Pool 3" vertex="1">
+          <mxGeometry height="19.33" width="58" x="842" y="40.67" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-47" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="SWS External URL Value = internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="330" x="181" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-48" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="SWS External URL Value = internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="315" x="1020" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-49" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Cluster2.internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="180" x="920" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-50" parent="8JWx7wgMDzW8q2umihq1-1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#FF7C69;gradientColor=none;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="765" y="-90" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-51" parent="8JWx7wgMDzW8q2umihq1-1" style="swimlane;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#333333;horizontal=1;" value="STATELESS - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (03)" vertex="1">
+          <mxGeometry height="250" width="765" x="1700" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-52" parent="8JWx7wgMDzW8q2umihq1-51" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-53" parent="8JWx7wgMDzW8q2umihq1-51" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;NFS Mount&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-54" edge="1" parent="8JWx7wgMDzW8q2umihq1-51" source="8JWx7wgMDzW8q2umihq1-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="8JWx7wgMDzW8q2umihq1-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-55" parent="8JWx7wgMDzW8q2umihq1-51" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-56" parent="8JWx7wgMDzW8q2umihq1-51" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-57" parent="8JWx7wgMDzW8q2umihq1-51" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-58" edge="1" parent="8JWx7wgMDzW8q2umihq1-51" source="8JWx7wgMDzW8q2umihq1-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-59" edge="1" parent="8JWx7wgMDzW8q2umihq1-51" source="8JWx7wgMDzW8q2umihq1-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-60" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="8JWx7wgMDzW8q2umihq1-51">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1891.29" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-61" parent="8JWx7wgMDzW8q2umihq1-1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.classic_load_balancer;fillColor=#CCCCCC;perimeter=rectanglePerimeter;backgroundOutline=0;fontColor=#333333;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="80" width="109" x="1690" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-62" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-61">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="80" as="sourcePoint" />
+            <mxPoint x="990" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-63" connectable="0" parent="8JWx7wgMDzW8q2umihq1-62" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="ALB4" vertex="1">
+          <mxGeometry relative="1" x="0.6057" y="-1" as="geometry">
+            <mxPoint x="140" y="29" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-64" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="Node Pool 4" vertex="1">
+          <mxGeometry height="19.33" width="58" x="1688" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-65" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.38;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-51">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1990.71" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-66" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.559;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-51">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2127.57" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-67" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="SWS External URL Value = internal.api.domain.com" vertex="1">
+          <mxGeometry height="30" width="315" x="1834" y="145" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-68" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Environment: Production - 1" vertex="1">
+          <mxGeometry height="30" width="172" x="209" y="122" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-69" parent="8JWx7wgMDzW8q2umihq1-1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Environment: Production - 1" vertex="1">
+          <mxGeometry height="30" width="172" x="1178.5" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-70" parent="8JWx7wgMDzW8q2umihq1-1" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;swimlaneFillColor=default;" value="Private Runtime Cloud " vertex="1">
+          <mxGeometry height="840" width="1160" x="60" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-71" edge="1" parent="8JWx7wgMDzW8q2umihq1-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="190" />
+              <mxPoint x="645" y="190" />
+            </Array>
+            <mxPoint x="125" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-72" parent="8JWx7wgMDzW8q2umihq1-70" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#273E59;" value="Cloud Attachments  (per subscriber account / environment)" vertex="1">
+          <mxGeometry height="30" width="385" x="20" y="648" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-73" parent="8JWx7wgMDzW8q2umihq1-70" style="swimlane;startSize=28;fillColor=#E8EDF2;strokeColor=#273E59;strokeWidth=2;fontStyle=1;fontSize=11;fontColor=#273E59;" value="PROD Attachment" vertex="1">
+          <mxGeometry height="240" width="240" x="420" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-74" parent="8JWx7wgMDzW8q2umihq1-73" style="shape=process;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=11;fontStyle=1;" value="Cloud Attachment&#xa;(PROD)" vertex="1">
+          <mxGeometry height="55" width="180" x="30" y="38" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-75" parent="8JWx7wgMDzW8q2umihq1-73" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Environment: PROD Stateful" vertex="1">
+          <mxGeometry height="35" width="180" x="30" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-76" parent="8JWx7wgMDzW8q2umihq1-73" style="text;html=1;fontSize=9;fontColor=#444444;align=left;whiteSpace=wrap;" value="Extensions:&#xa;• PROD API endpoints&#xa;• PROD credentials&#xa;• PROD-specific properties" vertex="1">
+          <mxGeometry height="70" width="210" x="15" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-77" parent="8JWx7wgMDzW8q2umihq1-70" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept A / Region A)" vertex="1">
+          <mxGeometry height="55" width="175" x="720" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-78" parent="8JWx7wgMDzW8q2umihq1-70" style="shape=process;whiteSpace=wrap;html=1;fillColor=#E8EDF2;strokeColor=#273E59;fontColor=#273E59;fontSize=10;fontStyle=1;" value="Sub-Attachment&#xa;(Dept B / Region B)" vertex="1">
+          <mxGeometry height="55" width="175" x="950" y="678" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-79" edge="1" parent="8JWx7wgMDzW8q2umihq1-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=2;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=9;fontColor=#273E59;fontStyle=1;" target="8JWx7wgMDzW8q2umihq1-73" value="attaches">
+          <mxGeometry relative="1" x="0.6061" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="540" y="300" />
+            </Array>
+            <mxPoint x="790" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-80" edge="1" parent="8JWx7wgMDzW8q2umihq1-70" source="8JWx7wgMDzW8q2umihq1-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="8JWx7wgMDzW8q2umihq1-78">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1037.5" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-81" parent="8JWx7wgMDzW8q2umihq1-70" style="text;html=1;strokeColor=#CCCCCC;fillColor=#FFFDE7;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=10;fontColor=#273E59;spacingLeft=8;spacingRight=8;spacingTop=6;spacingBottom=6;" value="&lt;b&gt;Key Concepts:&lt;/b&gt; &lt;br&gt;&lt;br&gt;&amp;nbsp;(1) The cloud cluster is a shared runtime — all attached environments execute processes on the same nodes. &lt;br&gt;&amp;nbsp;(2) Each Cloud Attachment carries its own environment extensions (connection overrides, credentials, properties), so the same deployed package behaves differently per environment. &lt;br&gt;&amp;nbsp;(3) Sub-attachments allow one account to further isolate workloads (e.g., by department or region) within a single environment. &lt;br&gt;&amp;nbsp;(4) A Private Runtime Cloud can support multiple Cloud Clusters.&amp;nbsp;" vertex="1">
+          <mxGeometry height="120" width="620" x="20" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-82" parent="8JWx7wgMDzW8q2umihq1-70" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=2;fontColor=#666666;" value="Optional: Sub-Attachments (department / tenant isolation within a single environment)" vertex="1">
+          <mxGeometry height="25" width="428" x="730" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-83" parent="8JWx7wgMDzW8q2umihq1-70" style="swimlane;startSize=40;fillColor=#FFF5F4;strokeColor=#FF7C69;strokeWidth=3;fontStyle=1;fontSize=14;fontColor=#273E59;horizontal=1;" value="STATEFUL - Private Runtime Cloud Cluster  (Customer-Hosted Infrastructure) (01)" vertex="1">
+          <mxGeometry height="250" width="765" x="170" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-84" parent="8JWx7wgMDzW8q2umihq1-83" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 1" vertex="1">
+          <mxGeometry height="110" width="130" x="60" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-85" parent="8JWx7wgMDzW8q2umihq1-83" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#273E59;strokeColor=#1A2D45;fontColor=#ffffff;fontSize=10;fontStyle=1;direction=south;" value="Cluster Specific&lt;br&gt;&amp;nbsp;NFS Mount&lt;br&gt;/boomi/share/cluster&lt;br&gt;(R/W from all nodes)" vertex="1">
+          <mxGeometry height="120" width="160" x="565" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-86" edge="1" parent="8JWx7wgMDzW8q2umihq1-83" source="8JWx7wgMDzW8q2umihq1-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;" target="8JWx7wgMDzW8q2umihq1-85">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-87" parent="8JWx7wgMDzW8q2umihq1-83" style="text;html=1;fontSize=9;fontColor=#666666;align=center;italic=1;whiteSpace=wrap;" value="All nodes share a common NFS-backed installation directory. The head node coordinates scheduling; worker nodes execute integration processes. Multiple subscriber accounts attach via Cloud Attachments — each runs isolated within its own environment context." vertex="1">
+          <mxGeometry height="35" width="705" x="25" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-88" parent="8JWx7wgMDzW8q2umihq1-83" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 2" vertex="1">
+          <mxGeometry height="110" width="130" x="215" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-89" parent="8JWx7wgMDzW8q2umihq1-83" style="shape=server;whiteSpace=wrap;html=1;fillColor=#FF7C69;strokeColor=#CC5544;fontColor=#ffffff;fontSize=11;fontStyle=1;verticalLabelPosition=middle;labelPosition=center;" value="Cluster Node 3" vertex="1">
+          <mxGeometry height="110" width="130" x="365" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-90" edge="1" parent="8JWx7wgMDzW8q2umihq1-83" source="8JWx7wgMDzW8q2umihq1-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-85">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="147.5" y="182" as="sourcePoint" />
+            <mxPoint x="647.5" y="192" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-91" edge="1" parent="8JWx7wgMDzW8q2umihq1-83" source="8JWx7wgMDzW8q2umihq1-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-85">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="428" y="175" />
+              <mxPoint x="428" y="202" />
+              <mxPoint x="645" y="202" />
+            </Array>
+            <mxPoint x="357.5" y="182" as="sourcePoint" />
+            <mxPoint x="877.5" y="187" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-92" edge="1" parent="8JWx7wgMDzW8q2umihq1-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#273E59;strokeWidth=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="8JWx7wgMDzW8q2umihq1-77">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="500" />
+            </Array>
+            <mxPoint x="650" y="500" as="sourcePoint" />
+            <mxPoint x="797.5" y="678" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-93" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.095;entryY=0.604;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-35">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="634.89" y="-171.68" />
+            </Array>
+            <mxPoint x="820" y="-260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-94" edge="1" parent="8JWx7wgMDzW8q2umihq1-1" source="8JWx7wgMDzW8q2umihq1-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.855;exitY=0.515;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.855;entryY=0.145;entryDx=0;entryDy=0;entryPerimeter=0;" target="8JWx7wgMDzW8q2umihq1-61">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1783.21" y="-178.81" />
+            </Array>
+            <mxPoint x="950.0000000000002" y="-45" as="sourcePoint" />
+            <mxPoint x="1750" y="135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8JWx7wgMDzW8q2umihq1-95" connectable="0" parent="8JWx7wgMDzW8q2umihq1-94" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="linux.internal.api.domain.com" vertex="1">
+          <mxGeometry relative="1" x="0.1642" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
