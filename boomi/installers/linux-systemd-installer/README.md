@@ -76,7 +76,7 @@ with the following characteristics:
 ### Syntax
 
 ```bash
-sudo ./install_boomi_systemd.sh -u <user> -p <runtime_path> [-g <group>] [-s <service_name>]
+sudo ./install-boomi-systemd.sh -u <user> -p <runtime_path> [-g <group>] [-s <service_name>]
 ```
 
 ### Required Parameters
@@ -100,7 +100,7 @@ sudo ./install_boomi_systemd.sh -u <user> -p <runtime_path> [-g <group>] [-s <se
 ### Standard Installation
 
 ```bash
-sudo ./install_boomi_systemd.sh -u boomi -p /opt/boomi/runtime
+sudo ./install-boomi-systemd.sh -u boomi -p /opt/boomi/runtime
 ```
 
 Creates:
@@ -111,7 +111,7 @@ Creates:
 ### Custom Service Name
 
 ```bash
-sudo ./install_boomi_systemd.sh -u boomi -p /opt/boomi/runtime -s boomi-atom
+sudo ./install-boomi-systemd.sh -u boomi -p /opt/boomi/runtime -s boomi-atom
 ```
 
 Creates:
