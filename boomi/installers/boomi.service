@@ -15,13 +15,11 @@ Restart=always
 RestartSec=5
 TimeoutSec=5min
 IgnoreSIGPIPE=no
+GuessMainPID=yes
 KillMode=process
 # Replace <runtime_path> with your Boomi runtime install directory
 # (standalone: /boomi/share, clustered node: /boomi/share/cluster, etc.)
-# start-launchd runs atom's own "start" launcher in the foreground (no
-# fork/detach), so systemd tracks the real Java process directly instead
-# of having to guess its PID after the wrapper script exits.
-ExecStart=<runtime_path>/bin/atom start-launchd
+ExecStart=<runtime_path>/bin/atom start
 ExecStop=<runtime_path>/bin/atom stop
 ExecReload=<runtime_path>/bin/atom restart
 User=boomi

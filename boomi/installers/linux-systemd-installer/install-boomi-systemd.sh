@@ -94,11 +94,9 @@ Restart=always
 RestartSec=5
 TimeoutSec=5min
 IgnoreSIGPIPE=no
+GuessMainPID=yes
 KillMode=process
-# start-launchd runs atom's own "start" launcher in the foreground (no
-# fork/detach), so systemd tracks the real Java process directly instead
-# of having to guess its PID after the wrapper script exits.
-ExecStart=${ATOM_BIN} start-launchd
+ExecStart=${ATOM_BIN} start
 ExecStop=${ATOM_BIN} stop
 ExecReload=${ATOM_BIN} restart
 User=${BOOMI_USER}

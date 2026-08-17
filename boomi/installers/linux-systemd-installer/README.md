@@ -63,9 +63,10 @@ The generated service file uses the following characteristics:
   - `LimitNOFILE=65536`
   - `LimitNPROC=65536`
 - **Lifecycle Commands**:
-  - Start: `atom start-launchd` — runs atom's `start` launcher in the foreground (no fork/detach), so systemd tracks the real Java process directly instead of guessing its PID after the wrapper script exits
+  - Start: `atom start`
   - Stop: `atom stop`
   - Reload: `atom restart` (stops, then starts again — there's no true in-place reload)
+- **GuessMainPID**: `yes` — `atom start` forks and detaches, so systemd has to identify the resulting Java process itself rather than tracking the `ExecStart` process directly
 
 ---
 
