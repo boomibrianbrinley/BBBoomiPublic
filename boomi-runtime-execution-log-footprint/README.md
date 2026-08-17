@@ -1,6 +1,6 @@
-# Boomi Runtime Log Footprint (Bash)
+# Boomi Runtime Log Footprint
 
-A **Bash** script to analyze disk usage by Boomi parent processes (process components) so you can tune logging and optimize process design in Boomi local runtime environments.
+A script to analyze disk usage by Boomi parent processes (process components) so you can tune logging and optimize process design in Boomi local runtime environments. The primary implementation is **Bash** (`boomi-runtime-execution-log-footprint.sh`, documented below); a **Python** port (`boomi_log_analyzer.py`) is also included for environments where Python is preferred over Bash.
 
 ## Overview
 
@@ -182,6 +182,23 @@ The script is designed to be extensible:
 - **Container logs**: Shared container logs are noted but not allocated to specific processes (would require log content parsing)
 - **Process correlation**: Relies on process name matching between executions and definitions
 - **Historical data**: Only analyzes execution history that exists on disk
+
+## Python Variant
+
+[`boomi_log_analyzer.py`](boomi_log_analyzer.py) implements the same analysis in Python 3 (no external dependencies). Unlike the Bash script, it's configured by editing the constants at the top of the file rather than passing CLI flags:
+
+```python
+EXECUTION_DIR = "/opt/Boomi/atom/jmxDemo/execution"
+PROCESSES_DIR = "/opt/Boomi/atom/jmxDemo/processes"
+LOGS_DIR = "/opt/Boomi/atom/jmxDemo/logs"
+TOP_N = 20
+```
+
+Run with `python3 boomi_log_analyzer.py` after editing those paths.
+
+## AI Prompt Templates
+
+[`prompts/`](prompts/) contains the AI coding-assistant prompts originally used to build this analyzer per platform/language (`vscode_aiPromptExample-linux-bash.txt`, `-mac-python.txt`, `-win-powershell.txt`). Reuse these if you want an AI assistant to port the tool to another language (a PowerShell version doesn't exist yet — the `-win-powershell.txt` prompt is there for anyone who wants to generate one).
 
 ## Contributing
 
