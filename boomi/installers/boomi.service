@@ -1,0 +1,31 @@
+[Unit]
+Description=Boomi Runtime
+After=local-fs.target network.target remote-fs.target nss-lookup.target time-sync.target
+# For AWS based clusters using EFS mounts use this instead:
+# After=efs.mount local-fs.target network.target remote-fs.target nss-lookup.target time-sync.target
+Conflicts=shutdown.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+LimitNOFILE=65536
+LimitNPROC=65536
+Type=simple
+Restart=always
+RestartSec=5
+TimeoutSec=5min
+IgnoreSIGPIPE=no
+KillMode=process
+# Replace <runtime_path> with your Boomi runtime install directory
+# (standalone: /boomi/share, clustered node: /boomi/share/cluster, etc.)
+# start-launchd runs atom's own "start" launcher in the foreground (no
+# fork/detach), so systemd tracks the real Java process directly instead
+# of having to guess its PID after the wrapper script exits.
+ExecStart=<runtime_path>/bin/atom start-launchd
+ExecStop=<runtime_path>/bin/atom stop
+ExecReload=<runtime_path>/bin/atom restart
+User=boomi
+Group=boomi
+
+[Install]
+WantedBy=multi-user.target

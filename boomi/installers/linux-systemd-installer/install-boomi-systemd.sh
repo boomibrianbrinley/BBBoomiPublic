@@ -78,25 +78,27 @@ echo "Writing systemd unit to: ${UNIT_PATH}"
 
 cat > "${UNIT_PATH}" <<EOF
 [Unit]
-Documentation=man:systemd-sysv-generator(8)
-Description=LSB: Boomi Clustered Runtime
-After=local-fs.target network.target remote-fs.target nss-lookup.target ntpd.service
+Description=Boomi Runtime
+After=local-fs.target network.target remote-fs.target nss-lookup.target time-sync.target
 # For AWS based clusters using EFS mounts use this instead:
-# After=efs.mount local-fs.target network.target remote-fs.target nss-lookup.target ntpd.service
+# After=efs.mount local-fs.target network.target remote-fs.target nss-lookup.target time-sync.target
 Conflicts=shutdown.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
 
 [Service]
 LimitNOFILE=65536
 LimitNPROC=65536
-# Type=forking
 Type=simple
 Restart=always
+RestartSec=5
 TimeoutSec=5min
 IgnoreSIGPIPE=no
 KillMode=process
-GuessMainPID=yes
-RemainAfterExit=yes
-ExecStart=${ATOM_BIN} start
+# start-launchd runs atom's own "start" launcher in the foreground (no
+# fork/detach), so systemd tracks the real Java process directly instead
+# of having to guess its PID after the wrapper script exits.
+ExecStart=${ATOM_BIN} start-launchd
 ExecStop=${ATOM_BIN} stop
 ExecReload=${ATOM_BIN} restart
 User=${BOOMI_USER}

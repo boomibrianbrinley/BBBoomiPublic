@@ -129,7 +129,7 @@ do_install() {
     <key>ProgramArguments</key>
     <array>
         <string>${ATOM_BIN}</string>
-        <string>console</string>
+        <string>start-launchd</string>
     </array>
 
     <key>WorkingDirectory</key>

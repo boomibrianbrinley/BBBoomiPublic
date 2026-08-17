@@ -53,21 +53,19 @@ This procedure works on **any Linux distribution that uses `systemd`**, includin
 
 ## Service Definition Details
 
-The generated service file matches the official Boomi clustered runtime definition
-with the following characteristics:
+The generated service file uses the following characteristics:
 
-- **Description**: `LSB: Boomi Clustered Runtime`
+- **Description**: `Boomi Runtime`
 - **Type**: `simple`
-- **Restart Policy**: `always`
+- **Restart Policy**: `always`, with `RestartSec=5` and a `StartLimitBurst=5`/`StartLimitIntervalSec=300` cap so a genuinely broken install fails loudly instead of crash-looping forever
 - **Timeout**: `5 minutes`
 - **Resource Limits**:
   - `LimitNOFILE=65536`
   - `LimitNPROC=65536`
 - **Lifecycle Commands**:
-  - Start: `atom start`
+  - Start: `atom start-launchd` — runs atom's `start` launcher in the foreground (no fork/detach), so systemd tracks the real Java process directly instead of guessing its PID after the wrapper script exits
   - Stop: `atom stop`
-  - Reload: `atom restart`
-- **RemainAfterExit**: `yes`
+  - Reload: `atom restart` (stops, then starts again — there's no true in-place reload)
 
 ---
 
